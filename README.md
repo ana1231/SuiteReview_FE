@@ -1,3 +1,4 @@
 # SuiteReview_FE
-# Test 1 for github permissions
-# Test 2 for github permissions
+
+
+- Initiated a react app and added components and pages.

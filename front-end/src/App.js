@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 
+// IMPORT COMPONENTS
+// import Header from "./components/Header";
+// import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom";
+// IMPORT PAGES
+import HotelIndex from "./pages/HotelIndex";
+import HotelShow from "./pages/HotelShow";
+
+
+
 function App() {
+  // URL should have YOUR HEROKU URL for your backend, make sure you include the trailing slash
+  const URL = "http://localhost:4000/";
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* //<Header /> */}
+      <Routes>
+
+        <Route exact path="/hotels" element={<HotelIndex URL={URL}/>}/>
+        <Route exact path="/hotels/:id" element={<HotelShow URL={URL} />}/>
+     
+
+      </Routes>
+
+      {/* <Footer /> */}
+
     </div>
   );
 }

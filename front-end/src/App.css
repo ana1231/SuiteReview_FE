@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+.register-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 30px 30px 30px 30px;
+}
+
+.login-form {
+  width: calc(40% - 10px)
+}
+
+.create-account-form {
+  width: calc(40% - 10px);
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.create-account-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-account-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-account-form label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.create-account-form input,
+.create-account-form textarea {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-account-form button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-account-form button:hover {
+  background-color: #0056b3;
+}

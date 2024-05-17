@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useHistory from React Router
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Get the history object
@@ -14,7 +14,7 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ userName, password })
       });
 
       if (!response.ok) {
@@ -32,9 +32,7 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    // Code to run after successful login
-  }, []);
+  //Save token to the browser -  read more about it
 
   return (
     <div className="login-form">
@@ -43,8 +41,8 @@ const Login = () => {
         <input
           type="text"
           placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
         />
       </div>
       <div>

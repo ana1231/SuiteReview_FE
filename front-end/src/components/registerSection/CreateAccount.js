@@ -9,6 +9,8 @@ const CreateAccount = () => {
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
 
+  //check notes, last week, object back
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Sending data to the server

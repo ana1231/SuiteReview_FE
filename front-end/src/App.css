@@ -93,3 +93,86 @@
 .create-account-form button:hover {
   background-color: #0056b3;
 }
+
+/* TEMP for building - Can change*/
+
+.App, body{
+
+
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+
+}
+
+.hotels, .hotel{
+
+
+  max-height: 100%;
+  max-width: 100%;
+  align-items: center; 
+  justify-content: center;
+
+  /* width:100%; */
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: thin;
+  padding: 20px;
+  margin: 20px;
+  border-radius:25px;
+
+
+
+  padding: 20px;
+  margin: 10px;
+  border-radius:25px;
+
+
+}
+
+.hotels_img, .hotel_img{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center; 
+  flex-wrap: wrap;
+  
+
+  /* object-fit:scale-down; */
+
+}
+.hotels_img img{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-evenly;
+  margin: 5px;
+  height:100px;
+  width: 100px;
+
+  object-fit:scale-down;
+
+}
+
+.hotel_img img{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-evenly;
+  margin: 5px;
+  height:400px;
+  width: 400px;
+
+  object-fit:scale-down;
+
+}
+
+a:link {
+  text-decoration: none;
+  
+}
+
+a:visited {
+  color:blue;
+}
+/* ____________________________*/

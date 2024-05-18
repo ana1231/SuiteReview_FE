@@ -4,10 +4,11 @@ import Header from "./components/headerSection/Header";
 import Register from "./pages/register";
 import Profile from "./pages/profilePage";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+//import { Route, Routes } from "react-router-dom";
 // IMPORT PAGES
 import HotelIndex from "./pages/HotelIndex";
 import HotelShow from "./pages/HotelShow";
+import UpdateReview from "./pages/UpdateReview"
 
 function App() {
   // URL should have YOUR HEROKU URL for your backend, make sure you include the trailing slash
@@ -22,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route exact path="/hotels" element={<HotelIndex URL={URL} />} />
           <Route exact path="/hotels/:id" element={<HotelShow URL={URL} />} />
+          <Route exact path="/reviews/:id" element={<UpdateReview URL={URL} />}/>
         </Routes>
       </Router>
     </div>

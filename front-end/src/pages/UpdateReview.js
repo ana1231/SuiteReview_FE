@@ -40,6 +40,17 @@ const UpdateReview =  (props) => {
     //=========
     // Get Data
     //=========
+    
+    // =======================================
+    //              BACKEND ROUTES
+    // =======================================
+
+    // Action    URL                   HTTP Verb     Explaination
+    //______________________________________________________________________________________
+    // Show      /reviews/review/:id     GET         returns one review
+    // Update    /reviews/:id            PUT         updates a particular review
+
+
 
     //https://react.dev/learn/updating-objects-in-state
     const getReviewsData = async () =>{
@@ -190,7 +201,7 @@ const UpdateReview =  (props) => {
     }
 
 
-    return (review) ? loaded(): <h1>Loading...</h1>
+    return review ? loaded(): <h1>Loading...</h1>
 
 
 

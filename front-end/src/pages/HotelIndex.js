@@ -12,6 +12,14 @@ const HotelIndex=(props)=>{
     // Get Data
     //=========
 
+    // =======================================
+    //              BACKEND ROUTES
+    // =======================================
+
+    // Action    URL                   HTTP Verb     Explaination
+    //______________________________________________________________________________________
+    // Index     /hotels/                GET         returns all hotels
+
     const getHotelsData = async () => {
         //make api call and get response
         const response = await fetch(props.URL + "hotels")
@@ -30,26 +38,36 @@ const HotelIndex=(props)=>{
       
     // define a function that will return the JSX needed once we get the data
     const loaded = () => {
-        return hotels.map((hotels) => (
-        <div className = "hotels" key={hotels.name}>
-            
-            <Link to = {`/hotels/${hotels._id}`}>
-                <h3>{hotels.name}</h3>
-            </Link>
-            <h4>{hotels.city}, {hotels.state}</h4>
-            <div className = "hotels_img">
-                <img src={hotels['images'][0]} />
-                <img src={hotels['images'][1]} />
-                <img src={hotels['images'][2]} />
+        
+        return (
+        
+        <div className="HotelIndexContainer">
+
+        
+            {hotels.map((hotels) => (
+            <div className = "hotels" key={hotels.name}>
+                
+                <Link to = {`/hotels/${hotels._id}`}>
+                    <h3>{hotels.name}</h3>
+                </Link>
+                <h4>{hotels.city}, {hotels.state}</h4>
+                <div className = "hotels_img">
+                    <img src={hotels['images'][0]} alt={hotels.name} />
+                    <img src={hotels['images'][1]} alt={hotels.name}/>
+                    <img src={hotels['images'][2]} alt={hotels.name}/>
+                </div>
+                <h4>Rating: {hotels.ave_rating}</h4>
+
+
+
+
+
             </div>
-            <h4>Rating: {hotels.ave_rating}</h4>
 
+        
+        ))}
 
-
-
-
-        </div>
-        ))
+        </div>)
     }
 
 

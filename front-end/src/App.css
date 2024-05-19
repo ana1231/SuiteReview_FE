@@ -96,7 +96,12 @@
 
 /* TEMP for building - Can change*/
 
-.App, body{
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.App,  body, .HotelIndexContainer{
 
 
   display: flex;

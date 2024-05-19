@@ -5,6 +5,7 @@ import Reviews from "../components/Reviews"
 
 const HotelShow=(props)=>{
 
+    console.log(props.userIdLoggedIn)
     const params = useParams()
 
     const mongoID = params.id
@@ -22,6 +23,14 @@ const HotelShow=(props)=>{
     //=========
     // Get Data
     //=========
+
+    // =======================================
+    //              BACKEND ROUTES
+    // =======================================
+    // Action    URL                   HTTP Verb     Explaination
+    //______________________________________________________________________________________
+    // Show      /reviews/:hotel_ID      GET         returns list of reviews for particular hotel
+    // Show      /hotels/:id             GET         returns a particular hotel
 
 
     const getReviewsData = async (hotel_Id) =>{
@@ -69,9 +78,9 @@ const HotelShow=(props)=>{
                 <h2>{hotels.name}</h2>
 
                 <div className = "hotel_img">
-                    <img src={hotels['images'][0]} />
-                    <img src={hotels['images'][1]} />
-                    <img src={hotels['images'][2]} />
+                    <img src={hotels['images'][0]} alt={hotels.name}/>
+                    <img src={hotels['images'][1]} alt={hotels.name}/>
+                    <img src={hotels['images'][2]} alt={hotels.name}/>
                 </div>
 
                 <h4>Rating: {hotels.ave_rating}</h4>
@@ -88,9 +97,10 @@ const HotelShow=(props)=>{
             
                 <Reviews 
                     hotel_Id={hotels.hotel_Id} 
-                    review_Id = {reviews._id}
-                    user_Id = {reviews.user_Id}
+                    userIdLoggedIn = {props.userIdLoggedIn}
                     URL = {props.URL}
+                    profileComponent = {false}
+                    loggedIn = {props.userIdLoggedIn ? true:false}
                     
                 />
                 
@@ -101,7 +111,7 @@ const HotelShow=(props)=>{
     }
 
 
-    return (hotels && reviews) ? loaded(): <h1>Loading...</h1>
+    return ((hotels && reviews) ? loaded(): <h1>Loading...</h1>)
 
 
 }

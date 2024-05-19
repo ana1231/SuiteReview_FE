@@ -42,7 +42,7 @@ const UpdateReview =  (props) => {
     //=========
     
     // =======================================
-    //              ROUTES
+    //              BACKEND ROUTES
     // =======================================
 
     // Action    URL                   HTTP Verb     Explaination

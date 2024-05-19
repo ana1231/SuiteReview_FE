@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import OneReview from "./OneReview"
 
+//pull in prop - profileComponent
 const Reviews = ({hotel_Id, review_Id, user_Id, URL}) =>{
 
     // create state to hold reviews

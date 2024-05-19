@@ -91,6 +91,7 @@ const HotelShow=(props)=>{
                     review_Id = {reviews._id}
                     user_Id = {reviews.user_Id}
                     URL = {props.URL}
+                    //profileComponent = false
                     
                 />
                 

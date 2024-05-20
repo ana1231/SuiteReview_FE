@@ -1,23 +1,12 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import Select from 'react-select'
+import hotelData from "../data"
 
 const UpdateReview =  (props) => {
 
     // used for react-select
-    //dropdown
-    const hotelData= [
-        {value : 0 , name:"hotel_Id", label:'Grand Hotel'},
-        {value : 1 , name:"hotel_Id", label:'Ocean View Resort'},
-        {value : 2 , name:"hotel_Id", label:'Mountain Lodge'},
-        {value : 3 , name:"hotel_Id", label:'Lakeside Inn'},
-        {value : 4 , name:"hotel_Id", label:'Sunset Resort'},
-        {value : 5 , name:"hotel_Id", label:'Ski Chalet'},
-        {value : 6 , name:"hotel_Id", label:'Beachfront Paradise'},
-        {value : 7 , name:"hotel_Id", label:'City Center Hotel'},
-        {value : 8 , name:"hotel_Id", label:'Riverside Retreat'},
-        {value : 9 , name:"hotel_Id", label:'Desert Oasis Resort'}
-    ]
+    //dropdown - hotelData
 
 
     const params = useParams()

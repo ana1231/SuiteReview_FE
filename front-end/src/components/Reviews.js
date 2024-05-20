@@ -19,8 +19,8 @@ const Reviews = ({hotel_Id, userIdLoggedIn, URL, profileComponent, loggedIn}) =>
     // =======================================
     // Action    URL                   HTTP Verb     Explaination
     //______________________________________________________________________________________
-    // Show      /reviews/:hotel_ID      GET         returns list of reviews for particular hotel
-    // Show      /reviews/user/:user_ID  GET         returns list of reviews for particular user
+    // Index     /reviews/:hotel_ID      GET         returns list of reviews for particular hotel
+    // Index     /reviews/user/:user_ID  GET         returns list of reviews for particular user
     // Delete    /reviews/:id            DELETE      updates a particular review
 
     const getReviewsData = async (some_Id) =>{

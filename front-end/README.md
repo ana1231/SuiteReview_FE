@@ -1,6 +1,6 @@
 # SuiteReview App for Project 3
 
-## Explanation of Components
+## Explanation of Project
 
 The SuiteReview application allows the user to create a travel review journal. The user will be able to create a profile to submit reviews for hotels and be able to view reviews left by others.
 

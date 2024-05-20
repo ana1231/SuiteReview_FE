@@ -213,7 +213,7 @@ Back End: Used to find all the documents of Hotels for a particular hotel:
 ```javascript
 Review.find({hotel_Id: Number(req.params.hotel_id)})
 ```
-Location in component diagram:
+Location in the component diagram:
 ``````
 App
 │
@@ -252,7 +252,7 @@ Back End: Used to find particular the document of Reviews and update it:
 ```javascript
 Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
 ```
-Location in component diagram:
+Location in the component diagram:
 ``````
 App
 │
@@ -295,7 +295,7 @@ Back End: Used to find a particular the document of Reviews and delete it:
 Review.findByIdAndDelete(req.params.id)
 ```
 
-Location in component diagram:
+Location in the component diagram:
 ``````
 App
 │

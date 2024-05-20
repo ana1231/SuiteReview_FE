@@ -271,7 +271,7 @@ Illustration of communication:
 graph LR;
 
     
-    A{REACT - Review.js}--->| 1 - req to backend| B{Back End Server}
+    A{REACT - UpdateReview.js}--->| 1 - req to backend| B{Back End Server}
     B-->|2| C[PUT route] 
     C-->|3 - query|id1[(Reviews Collection)]
     id1[(Reviews Collection)] -->|4 - success|B
@@ -314,7 +314,7 @@ Illustration of communication:
 graph LR;
 
     
-    A{REACT - Review.js}--->| 1 - req to backend| B{Back End Server}
+    A{REACT - DeleteButton.js}--->| 1 - req to backend| B{Back End Server}
     B-->|2| C[DELETE route] 
     C-->|3 - query|id1[(Reviews Collection)]
     id1[(Reviews Collection)]-->|4 - success| B

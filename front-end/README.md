@@ -1,70 +1,340 @@
-# Getting Started with Create React App
+# SuiteReview App for Project 3
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Explanation of Project
 
-## Available Scripts
+The SuiteReview application allows the user to create a travel review journal. The user will be able to create a profile to submit reviews for hotels and be able to view reviews left by others.
 
-In the project directory, you can run:
 
-### `npm start`
+This project used the MVC file structure: Models, Views, Controllers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The full-stack for this application is MERN Stack Node.js, Mongoose, Express and React.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+One model has full CRUD and the application includes sign up/log in functionality. 
 
-### `npm test`
+## User Story and Wireframes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### User Stories:
 
-### `npm run build`
+As a user, I should be able to create a profile, login and log-out.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As a user, I should be able to create, read, update, and delete reviews for the hotels that I have visited.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As a user, I should be able to view other reviews from different users.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As a user, I should be able to view the reviews that I have submitted.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Wireframes:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+(need to add)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies Used
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+<h3 align="left">Languages and Tools:</h3>
+<p align="left"> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> </p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Approach
 
-### Code Splitting
+### Backend Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Hotels
+***
+**(In progress - Need all routes)**
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+|GET        | /hotels     |Index    | returns all hotels            |
+|GET        |  |Show     | returns a particular hotel |
 
-### Analyzing the Bundle Size
+#### Users
+***
+**(In progress - Need all routes)**
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| GET  | /users          |Index   | returns all users |
+| GET  |  |Show    | returns particular user|
+| POST |       |Create  | create new user|
+| POST |    |Create  | log in - already a user|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Reviews
+#### *FULL CRUD*
+***
+**(In progress - Need all routes)**
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| GET   | /reviews               |Index    | returns all reviews|
+| GET   |     |Index     | returns list of reviews for particular hotel   |
+| GET   |  | Index    | returns list of reviews for particular user|
+| GET   |    | Show    | returns one review|
+| POST  |     | Create  | create new review|
+| PUT   |          | Update  | updates a particular review|
+| DELETE|          | Delete  | deletes a particular review|
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Models
+***
 
-### Deployment
+```mermaid
+erDiagram
+    USERS ||--o{ REVIEWS : creates
+    USERS {
+        string userName
+        string firstName
+        string lastName
+        string userImage
+        string description
+        string password
+        number user_Id
+    }
+    REVIEWS }o--|| HOTELS : contains
+    REVIEWS {
+        number hotel_Id
+        number user_Id
+        number rating
+        string description
+        string images
+    }
+        HOTELS {
+        string name
+        string state
+        string city
+        string address
+        string description
+        string images
+        number hotel_Id  
+        number ave_rating
+    }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+
+### React Diagram (Document Tree)
+***
+
+![ReactDiagram](public/images/ReactTreeDiagram.jpg)
+
+### Nested Component Structure of the Application
+***
+``````
+App
+│
+├── Main
+│   ├── HotelIndex
+|   |
+│   ├── HotelShow
+|   |   └── Review
+|   |        └── OneReview
+|   |            ├── DeleteButton
+|   |            └── UpdateButton
+|   |                └── UpdateReview
+│   |    
+│   └── Profile
+|       └── Review
+|            └── OneReview
+|                ├── DeleteButton
+|                └── UpdateButton
+|                    └── UpdateReview
+│       
+│
+└── Footer?
+
+``````
+
+### Explaination of Components
+***
+
+
+- **App**: The root component. Sends user_Id down stream.
+  - **Main**: Contains the routes (Profile, Index, Show, and Update pages)
+    - **Page - HotelIndex**: Views all hotels with minimal information.
+    - **Page - HotelShow**: Shows a hotel with its details and all of its reviews.
+      - **Component - Review**: Section containing all the reviews.
+        - **Component - OneReview**: A review for that hotel.
+          - **Component - DeleteButton**: Deletes a review.
+          - **Component - UpdateButton**: Links to the UpdateReview page.
+            - **Page - UpdateReview**: Form to update review.
+  - **Page - Profile**: Contains the user's information and all reviews for that user.
+      - **Component - Review**: Section containing all the reviews.
+        - **Component - OneReview**: A review for that user.
+          - **Component - DeleteButton**: Deletes a review.
+          - **Component - UpdateButton**: Links to the UpdateReview page.
+            - **Page - UpdateReview**: Form to update review.
+
+
+## Full CRUD (Create, Read, Update, and Delete)
+
+#### Create
+***
+
+**(In progress - Needs Component Diagram)**
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| POST  | /reviews/:hotel_ID     | Create  | create new review|
+
+Back End: This action takes the review information from the request sent from the front end and creates a new document:
+```javascript
+Review.create(newObj)
+```
+Location in the component diagram:
+
+**(In progress - Needs Component Diagram)**
+
+Illustration of communication:
+
+```mermaid
+graph LR;
+
+    
+    A{REACT - CreateReview.js}--->| 1 - req to backend| B{Back End Server}
+    B-->|2| C[POST route] 
+    C-->|3 - query|id1[(Reviews Collection)]
+    id1[(Reviews Collection)] -->|4 - success|B
+ 
+
+
+
+```
+
+
+#### Read
+***
+There are a few GET routes. This section will focus on the Review.js component under the hotel show page.
+
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| GET   | /reviews/:hotel_ID     |Index     | returns list of reviews for particular hotel   |
+
+
+Back End: Used to find all the documents of Hotels for a particular hotel:
+```javascript
+Review.find({hotel_Id: Number(req.params.hotel_id)})
+```
+Location in the component diagram:
+``````
+App
+│
+└──Main
+   └── HotelShow
+        └── Review
+
+``````
+Illustration of communication:
+
+```mermaid
+graph LR;
+
+    
+    A{REACT - Review.js}--->| 1 - req to backend| B{Back End Server}
+    B-->|2| C[GET route] 
+    C-->|3 - query|id1[(Reviews Collection)]
+    id1[(Reviews Collection)]-->|4| D[reviews/documents]
+    D -->|5|B
+    B -->|6 - res back to React|A
+
+
+
+```
+
+#### Update
+***
+Although it appears twice on the tree diagram, this section will use the hotel show page branch because the functionality is the same on both branches.
+
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| PUT   | /reviews/:id           | Update  | updates a particular review|
+
+Back End: Used to find particular the document of Reviews and update it:
+
+```javascript
+Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
+```
+Location in the component diagram:
+``````
+App
+│
+└──Main
+   └── HotelShow
+       └── Review
+           └── OneReview
+               └── UpdateButton
+                     └── UpdateReview
+
+``````
+
+Illustration of communication:
+
+```mermaid
+graph LR;
+
+    
+    A{REACT - UpdateReview.js}--->| 1 - req to backend| B{Back End Server}
+    B-->|2| C[PUT route] 
+    C-->|3 - query|id1[(Reviews Collection)]
+    id1[(Reviews Collection)] -->|4 - success|B
+    
+
+
+
+```
+
+#### Delete
+***
+Although it appears twice on the diagram, this section will use the hotel show page branch because the functionality is the same on both branches.
+
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| DELETE| /reviews/:id           | Delete  | deletes a particular review|
+
+Back End: Used to find a particular the document of Reviews and delete it:
+
+```javascript
+Review.findByIdAndDelete(req.params.id)
+```
+
+Location in the component diagram:
+``````
+App
+│
+└──Main
+   └── HotelShow
+       └── Review
+           └── OneReview
+               └── DeleteButton
+                     
+
+``````
+
+Illustration of communication:
+
+```mermaid
+graph LR;
+
+    
+    A{REACT - DeleteButton.js}--->| 1 - req to backend| B{Back End Server}
+    B-->|2| C[DELETE route] 
+    C-->|3 - query|id1[(Reviews Collection)]
+    id1[(Reviews Collection)]-->|4 - success| B
+
+
+
+
+```
+## Authentification
+
+**(In progress)**
+
+## Unsolved Problems
+
+- Error Handling
+
+**(In progress)**
+  
+## Forthcoming Features
+
+- Error Handling
+
+**(In progress)**

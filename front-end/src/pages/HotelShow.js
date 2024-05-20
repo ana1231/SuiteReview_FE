@@ -29,7 +29,7 @@ const HotelShow=(props)=>{
     // =======================================
     // Action    URL                   HTTP Verb     Explaination
     //______________________________________________________________________________________
-    // Show      /reviews/:hotel_ID      GET         returns list of reviews for particular hotel
+    // Index     /reviews/:hotel_ID      GET         returns list of reviews for particular hotel
     // Show      /hotels/:id             GET         returns a particular hotel
 
 

@@ -233,7 +233,7 @@ graph LR;
     C-->|3 - query|id1[(Reviews Collection)]
     id1[(Reviews Collection)]-->|4| D[reviews/documents]
     D -->|5|B
-    B -->|5 - res back to React|A
+    B -->|6 - res back to React|A
 
 
 

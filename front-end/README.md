@@ -41,35 +41,36 @@ As a user, I should be able to view the reviews that I have submitted.
 
 #### Hotels
 ***
-**(In progress - Need all routes)**
+
 |HTTP Verb  |URL   | Action      | Explaination          |
 |-----------|------|-------------|-----------------------|
 |GET        | /hotels     |Index    | returns all hotels            |
-|GET        |  |Show     | returns a particular hotel |
+|GET        | /hotels/:id |Show     | returns a particular hotel |
 
 #### Users
 ***
-**(In progress - Need all routes)**
+
 |HTTP Verb  |URL   | Action      | Explaination          |
 |-----------|------|-------------|-----------------------|
 | GET  | /users          |Index   | returns all users |
-| GET  |  |Show    | returns particular user|
-| POST |       |Create  | create new user|
-| POST |    |Create  | log in - already a user|
+| GET  | /users/profile  |Show    | returns particular user|
+| POST | /users/new      |Create  | create new user|
+| POST | /users/login    |Create  | log in - already a user|
 
 #### Reviews
 #### *FULL CRUD*
 ***
-**(In progress - Need all routes)**
+
 |HTTP Verb  |URL   | Action      | Explaination          |
 |-----------|------|-------------|-----------------------|
 | GET   | /reviews               |Index    | returns all reviews|
-| GET   |     |Index     | returns list of reviews for particular hotel   |
-| GET   |  | Index    | returns list of reviews for particular user|
-| GET   |    | Show    | returns one review|
-| POST  |     | Create  | create new review|
-| PUT   |          | Update  | updates a particular review|
-| DELETE|          | Delete  | deletes a particular review|
+| GET   | /reviews/:hotel_Id     |Index     | returns list of reviews for particular hotel   |
+| GET   | /reviews/user/:user_Id | Index    | returns list of reviews for particular user|
+| GET   | /reviews/review/:id    | Show    | returns one review|
+| POST  | /reviews/:hotel_Id     | Create  | create new review|
+| PUT   | /reviews/:id           | Update  | updates a particular review|
+| DELETE| /reviews/:id           | Delete  | deletes a particular review|
+
 
 
 

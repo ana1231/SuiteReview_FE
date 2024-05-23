@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import Select from "react-select"
+import Select from 'react-select'
 import hotelData from "../data"
 
 const UpdateReview =  (props) => {

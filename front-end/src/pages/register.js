@@ -4,7 +4,6 @@ import CreateAccount from "../components/registerSection/CreateAccount";
 import Header from "../components/headerSection/Header";
 
 const Register = ()=> {
-  
 
   return (
     <>

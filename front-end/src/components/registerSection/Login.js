@@ -7,8 +7,6 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Get the history object
 
-
-  //prob don't need it as I am setting the authentication in App
   const handleLogin = async () => {
     try {
       const response = await fetch('/api/login', {

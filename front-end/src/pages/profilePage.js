@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/headerSection/Header";
 
-const Profile = (props) => {
+const Profile = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch user data from the server after login
-    const userData = props.userLoggedIn; 
+    const userData = localStorage.getItem("userData"); // Retrieve user data from local storage
     if (userData) {
       setUser(JSON.parse(userData)); // Parse JSON data and set user state
     } else {

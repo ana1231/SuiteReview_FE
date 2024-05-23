@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react"
-
-
-
 import Reviews from "../components/Reviews"
+
 
 const ProfileTest = (props)=>{
 
     console.log(props.userIdLoggedIn)
     console.log(props)
-
-
 
     // create state to hold reviews
     const [reviews, setReviews] = useState(null)
@@ -19,8 +15,9 @@ const ProfileTest = (props)=>{
     //=========
 
     const getReviewsData = async (user_Id) =>{
-
+        //getting list of reviews for this specific user.
         const backendURLReviews = props.URL + "reviews/user/" + user_Id
+    
 
         //make api call and get response
         const response2 = await fetch(backendURLReviews)

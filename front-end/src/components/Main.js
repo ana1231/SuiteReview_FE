@@ -6,25 +6,28 @@ import Header from "./headerSection/Header";
 import HeaderNav from "./HeaderNav";
 
 // IMPORT PAGES
-import Register from "../pages/register";
+import Register from "../pages/Register";
 import Profile from "../pages/profilePage";
-import HotelIndex from "../pages/HotelIndex";
-import HotelShow from "../pages/HotelShow";
+// import HotelIndex from "../pages/HotelIndex";
+// import HotelShow from "../pages/HotelShow";
 import UpdateReview from "../pages/UpdateReview"
 import ProfileTest from "../pages/ProfileTest"
+import NewReviewForm from "../pages/NewReview";
 
 const Main = (props) => {
+
     //console.log(props)
     return (
         <main>
 
-          <HeaderNav />
-
+          <HeaderNav /> 
+          
           <Routes>
+            <Route path="/newReview" element={<NewReviewForm userIdLoggedIn={props.userIdLoggedIn} URL={props.URL} />} />
             <Route path="/" element={<Header />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-    
+{/*     
             <Route exact path="/hotels" element={<HotelIndex URL={props.URL}/>}/>
             
             <Route 
@@ -34,7 +37,7 @@ const Main = (props) => {
                         URL={props.URL} 
                         userIdLoggedIn = {props.userIdLoggedIn}
                     />
-                }/>
+                }/> */}
             
             </Routes>
             {props.userIdLoggedIn ?
@@ -54,6 +57,7 @@ const Main = (props) => {
                             <ProfileTest 
                                 URL={props.URL} 
                                 userIdLoggedIn = {props.userIdLoggedIn}
+                                currentUser={props.currentUser}
                             />
                         }/>
                 </Routes>

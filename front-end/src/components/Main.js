@@ -8,8 +8,8 @@ import HeaderNav from "./HeaderNav";
 // IMPORT PAGES
 import Register from "../pages/Register";
 import Profile from "../pages/profilePage";
-// import HotelIndex from "../pages/HotelIndex";
-// import HotelShow from "../pages/HotelShow";
+import HotelIndex from "../pages/HotelIndex";
+import HotelShow from "../pages/HotelShow";
 import UpdateReview from "../pages/UpdateReview"
 import ProfileTest from "../pages/ProfileTest"
 import NewReviewForm from "../pages/NewReview";

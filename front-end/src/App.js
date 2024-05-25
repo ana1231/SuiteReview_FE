@@ -1,34 +1,16 @@
-
 import './App.css';
 import { useState } from 'react';
-
-
-// IMPORT Components
-import Main from "./components/Main"
-
+import { useNavigate } from 'react-router-dom';
+import Main from './components/Main';
 
 function App() {
-
-
-  //States for saving the userName and passwords entered for both login and create and account
-  
   const [errorMessage, setErrorMessage] = useState('');
   const [currentUser, setCurrentUser] = useState({});
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleCreateUser = async (event) => {
-    event.preventDefault();
-    event.currentTarget.reset();
-    let userObj = {
-      userName: userName,
-      password: password
-    };
-    setUserName('');
-    setPassword('');
-
+  const handleCreateUser = async (userObj) => {
     try {
-      const response = await fetch('http://localhost:4000/createaccount', {
+      const response = await fetch('http://localhost:4000/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -38,29 +20,19 @@ function App() {
 
       const data = await response.json();
       if (data.userName) {
-        console.log(data);
         setErrorMessage('');
         setCurrentUser(data);
+        navigate('/hotels');
       } else {
-        setErrorMessage(data);
+        setErrorMessage(data.message || 'An error occurred');
       }
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('An error occurred while creating the account.');
-      
     }
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    event.currentTarget.reset();
-    let userObj = {
-      userName: userName,
-      password: password
-    };
-    setUserName('');
-    setPassword('');
-
+  const handleLogin = async (userObj) => {
     try {
       const response = await fetch('http://localhost:4000/login', {
         method: 'PUT',
@@ -72,38 +44,32 @@ function App() {
 
       const data = await response.json();
       if (data.userName) {
-        console.log(data);
         setErrorMessage('');
         setCurrentUser(data);
+        navigate('/hotels');
       } else {
-        console.log(data);
-        setErrorMessage(data);
+        setErrorMessage(data.message || 'An error occurred');
       }
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('An error occurred while logging in.');
-      
     }
   };
-    
-  
-  // URL should have YOUR HEROKU URL for your backend, make sure you include the trailing slash
-  const URL = "http://localhost:4000/";
 
+  const URL = 'http://localhost:4000/';
 
   return (
-
     <div className="App">
-
-      <Main userIdLoggedIn = {101} URL ={URL} handleLogin={handleLogin} handleCreateUser={handleCreateUser} currentUser={currentUser}/>
-      
-
-      
-
+      <Main
+        userIdLoggedIn={currentUser.user_Id}
+        URL={URL}
+        handleLogin={handleLogin}
+        handleCreateUser={handleCreateUser}
+        currentUser={currentUser}
+      />
+      {errorMessage && <div className="error">{errorMessage}</div>}
     </div>
-
   );
 }
-
 
 export default App;

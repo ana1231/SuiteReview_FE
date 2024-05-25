@@ -3,15 +3,15 @@ import Login from "../components/registerSection/Login";
 import CreateAccount from "../components/registerSection/CreateAccount";
 import Header from "../components/headerSection/Header";
 
-const Register = ()=> {
+const Register = (props)=> {
   
 
   return (
     <>
     <Header/>
   <div className="register-section">
-    <Login/>
-    <CreateAccount/>
+    <Login handleLogin={props.handleLogin} URL={props.URL}/>
+    <CreateAccount handleCreateUser={props.handleCreateUser} URL={props.URL}/>
   </div>
   </>)
   

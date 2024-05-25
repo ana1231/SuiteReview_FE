@@ -16,7 +16,6 @@ import NewReviewForm from "../pages/NewReview";
 
 const Main = (props) => {
 
-    //console.log(props)
     return (
         <main>
 
@@ -25,10 +24,10 @@ const Main = (props) => {
           <Routes>
             <Route path="/newReview" element={<NewReviewForm userIdLoggedIn={props.userIdLoggedIn} URL={props.URL} />} />
             <Route path="/" element={<Header />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-{/*     
-            <Route exact path="/hotels" element={<HotelIndex URL={props.URL}/>}/>
+            <Route path="/register" element={<Register handleLogin={props.handleLogin} handleCreateUser={props.handleCreateUser} URL={props.URL}/>} />
+            <Route path="/profile" element={<Profile currentUser={props.currentUser} URL={props.URL}/>} />
+    
+            <Route exact path="/hotels" element={<HotelIndex URL={props.URL} currentUser={props.currentUser} />}/>
             
             <Route 
                 exact path="/hotels/:id" 
@@ -37,7 +36,7 @@ const Main = (props) => {
                         URL={props.URL} 
                         userIdLoggedIn = {props.userIdLoggedIn}
                     />
-                }/> */}
+                }/>
             
             </Routes>
             {props.userIdLoggedIn ?

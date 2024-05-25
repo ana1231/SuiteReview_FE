@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const CreateAccount = () => {
+const CreateAccount = ({ handleCreateUser }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [description, setDescription] = useState('');
-  const navigate = useNavigate();
-
-  //check notes, last week, object back
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Sending data to the server
-    console.log('Form submitted!');
-    console.log('Username:', userName);
-    console.log('Password:', password);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Description:', description);
-    // After handling form submission, you can redirect to another page
-    navigate('/'); // Redirect to the home page
+    handleCreateUser({ userName, password, firstName, lastName, description });
+    setUserName('');
+    setPassword('');
+    setFirstName('');
+    setLastName('');
+    setDescription('');
   };
 
   return (

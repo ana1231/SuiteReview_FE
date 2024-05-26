@@ -1,199 +1,164 @@
-import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import Select from "react-select"
-import hotelData from "../data"
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Select from "react-select";
+import hotelData from "../data";
 
-const UpdateReview =  (props) => {
+const UpdateReview = (props) => {
+  // used for react-select
+  //dropdown - hotelData
 
-    // used for react-select
-    //dropdown - hotelData
+  const params = useParams();
+  const navigate = useNavigate();
 
+  // create state to hold review
+  const [review, setReview] = useState(null);
 
-    const params = useParams()
-    const navigate = useNavigate()
+  // create state to hold form
+  const [updateForm, setUpdateForm] = useState({
+    hotel_Id: "",
+    user_Id: "",
+    rating: "",
+    description: "",
+  });
 
-    // create state to hold review
-    const [review, setReview] = useState(null)
-   
-    // create state to hold form
-    const [updateForm, setUpdateForm] = useState({
-        hotel_Id: '', 
-        user_Id:  '', 
-        rating:  '',  
-        description: ''
-    })
+  const mongoID = params.id;
+  const backendURLReview = props.URL + "reviews/review/" + mongoID;
 
-    const mongoID = params.id
-    const backendURLReview = props.URL + "reviews/review/" + mongoID
+  //=========
+  // Get Data
+  //=========
 
-    //=========
-    // Get Data
-    //=========
-    
-    // =======================================
-    //              BACKEND ROUTES
-    // =======================================
+  // =======================================
+  //              BACKEND ROUTES
+  // =======================================
 
-    // Action    URL                   HTTP Verb     Explaination
-    //______________________________________________________________________________________
-    // Show      /reviews/review/:id     GET         returns one review
-    // Update    /reviews/:id            PUT         updates a particular review
+  // Action    URL                   HTTP Verb     Explaination
+  //______________________________________________________________________________________
+  // Show      /reviews/review/:id     GET         returns one review
+  // Update    /reviews/:id            PUT         updates a particular review
 
+  //https://react.dev/learn/updating-objects-in-state
+  const getReviewsData = async () => {
+    //make api call and get response
+    const response = await fetch(backendURLReview);
+    // turn response into javascript object
+    const data = await response.json();
+    console.log(data);
 
+    //console.log(data)
+    setReview(data);
+    setUpdateForm({
+      ...updateForm,
+      user_Id: data.user_Id,
+      hotel_Id: data.hotel_Id,
+    });
+  };
 
-    //https://react.dev/learn/updating-objects-in-state
-    const getReviewsData = async () =>{
+  //========================
+  // Update
+  //========================
 
-        //make api call and get response
-        const response = await fetch(backendURLReview)
-        // turn response into javascript object
-        const data = await response.json()
-        console.log(data)
+  const updateReview = async (review, id) => {
+    console.log(`in upate/put, sending`);
+    console.log(review);
+    await fetch(props.URL + "reviews/" + id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
+    });
+  };
 
-        //console.log(data)
-        setReview(data)
-        setUpdateForm({
-            ...updateForm,
-            user_Id: data.user_Id,
-            hotel_Id: data.hotel_Id
-        })
-    }
+  //=========
+  // Handlers
+  //=========
 
-    //========================
-    // Update
-    //========================
+  const handleChange = (event) => {
+    setUpdateForm((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
 
-    const updateReview = async (review, id) => {
-        console.log(`in upate/put, sending`)
-        console.log(review)
-        await fetch(props.URL + "reviews/" + id, {
-            method: "put",
-            headers: {
-                "Content-Type": "application/json"
-            }, 
-            body: JSON.stringify(review)
-        })
+  const handleDropDown = (e) => {
+    setUpdateForm((prev) => ({
+      ...prev,
+      hotel_Id: e.value,
+    }));
+  };
 
-    }
+  const fixFormTypes = () => {
+    setUpdateForm({
+      ...updateForm,
+      rating: Number(updateForm.rating),
+      hotel_Id: Number(updateForm.hotel_Id),
+    });
+  };
 
-    //=========
-    // Handlers
-    //=========
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleChange = (event) => {
-        setUpdateForm(prev => ({
-            ...prev, 
-            [event.target.name]: event.target.value
-        }))
-    }
+    fixFormTypes();
+    updateReview(updateForm, mongoID);
+    navigate(`/hotels`);
+  };
 
-    const handleDropDown =(e)=>{
+  // make an initial call for the data inside a useEffect, so it only happens once on component load
+  useEffect(() => {
+    getReviewsData();
+  }, []);
 
-        setUpdateForm(prev => ({
-            ...prev, 
-            hotel_Id: e.value
-        }))
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+  const loaded = () => {
+    return (
+      <div className="updateForm">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Hotel:
+            <Select
+              onChange={handleDropDown}
+              options={hotelData}
+              name="hotel_Id"
+              defaultValue={hotelData.filter((hotel) => {
+                return hotel.value === review.hotel_Id;
+              })}
+            />
+          </label>
 
-    }
-    
-    const fixFormTypes=()=>{
-        setUpdateForm({
-            ...updateForm,
-            rating: Number(updateForm.rating),
-            hotel_Id: Number(updateForm.hotel_Id)
-        })
+          <label>
+            <br></br>
+            Rating:
+            <input
+              type="text"
+              value={updateForm.rating}
+              name="rating"
+              placeholder={review.rating}
+              onChange={handleChange}
+            />
+          </label>
 
-    }
+          <label>
+            <br></br>
+            <br></br>
+            Description:
+            <input
+              type="text"
+              value={updateForm.description}
+              name="description"
+              placeholder={review.description}
+              onChange={handleChange}
+            />
+          </label>
+          <br></br>
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+          <input type="Submit" value="Update Review" />
+        </form>
+      </div>
+    );
+  };
 
-        fixFormTypes()
-        updateReview(updateForm, mongoID)
-        navigate(`/hotels`)
-    }
+  return review ? loaded() : <h1>Loading...</h1>;
+};
 
-    // make an initial call for the data inside a useEffect, so it only happens once on component load
-    useEffect(() => {getReviewsData() }, [])
-
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-    const loaded = () => {
-        return (
-
-            <div className="updateForm">
-                <form onSubmit={handleSubmit}>
-                    
-
-                    <label>
-                        Hotel:
-                        <Select
-
-                            onChange={handleDropDown}
-                            options={hotelData}
-                            name="hotel_Id"
-                            defaultValue={hotelData.filter((hotel)=> {
-                                return hotel.value === review.hotel_Id})}
-
-                            
-                        />
-
-
-                    </label>
-
-                    <label>
-                        <br></br>
-                        
-                        Rating:
-
-                        <input
-
-                            type="text"
-                            value={updateForm.rating}
-                            name="rating"
-                            placeholder={review.rating}
-                            onChange={handleChange}
-
-
-                        />
-                        
-                    </label>    
-
-                    <label>
-                        <br></br>
-                        <br></br>
-                        Description:
-
-                        <input
-
-                            type="text"
-                            value={updateForm.description}
-                            name="description"
-                            placeholder={review.description}
-                            onChange={handleChange}
-                            
-                        />   
-
-                    </label>
-                    <br></br>
-     
-
-                    <input type="Submit" value="Update Review" />            
-
-
-
-                </form>
-            </div>
-
-
-
-        )
-    }
-
-
-    return review ? loaded(): <h1>Loading...</h1>
-
-
-
-}
-
-export default UpdateReview
+export default UpdateReview;

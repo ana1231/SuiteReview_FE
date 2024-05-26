@@ -66,6 +66,8 @@ const HotelShow = (props) => {
         <Header
           currentUser={props.currentUser}
           userLoggedIn={props.userLoggedIn}
+          setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}
         />
         <div className="hotel">
           <div className="hotel_container">

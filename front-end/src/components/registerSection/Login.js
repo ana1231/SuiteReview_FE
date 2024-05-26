@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const URL =  `${props.URL}users/login`
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const URL = `${props.URL}users/login`;
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -15,36 +15,33 @@ const Login = (props) => {
     try {
       const userObj = { userName, password };
       handleLogin(userObj);
-      console.log(userObj); // Redirect to the home page upon successful login
     } catch (error) {
-      setError('Login failed. Please try again.');
+      setError("Login failed. Please try again.");
     }
   };
 
   const handleLogin = async (userObj) => {
-    
     try {
       const response = await fetch(URL, {
-        method: 'put',
+        method: "put",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(userObj)
+        body: JSON.stringify(userObj),
       });
 
       const data = await response.json();
       if (data.userName) {
-        setErrorMessage('');
+        setErrorMessage("");
         props.setCurrentUser(data);
         props.setUserId(data.user_Id);
-        console.log(data.user_Id)
-        navigate('/hotels');
+        navigate("/hotels");
       } else {
-        setErrorMessage(data.message || 'An error occurred');
+        setErrorMessage(data || "An error occurred");
       }
     } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('An error occurred while logging in.');
+      console.error("Error:", error);
+      setErrorMessage("An error occurred while logging in.");
     }
   };
 
@@ -68,9 +65,12 @@ const Login = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
+        {error && <div style={{ color: "red" }}>{error}</div>}
         <button type="submit">Login</button>
       </form>
+      <div className="error-message-login">
+        <p>{errorMessage}</p>
+      </div>
     </div>
   );
 };

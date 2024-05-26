@@ -2,21 +2,20 @@ import { Route, Routes } from "react-router-dom";
 
 // IMPORT COMPONENTS
 import Header from "./headerSection/Header";
-import HeaderNav from "./HeaderNav";
+// import HeaderNav from "./HeaderNav";
 
 // IMPORT PAGES
 import Register from "../pages/Register";
-import Profile from "../pages/profilePage";
 import HotelIndex from "../pages/HotelIndex";
 import HotelShow from "../pages/HotelShow";
 import UpdateReview from "../pages/UpdateReview";
-import ProfileTest from "../pages/ProfileTest";
+import Profile from "../pages/ProfileTest";
 import NewReviewForm from "../pages/NewReview";
 
 const Main = (props) => {
   return (
     <main>
-      <HeaderNav />
+      {/* <HeaderNav /> */}
       <Routes>
         <Route path="/" element={<Header />} />
 
@@ -36,14 +35,26 @@ const Main = (props) => {
           exact
           path="/hotels"
           element={
-            <HotelIndex URL={props.URL} currentUser={props.currentUser} userIdLoggedIn={props.userIdLoggedIn}/>
+            <HotelIndex
+              URL={props.URL}
+              currentUser={props.currentUser}
+              userIdLoggedIn={props.userIdLoggedIn}
+              setUserId={props.setUserId}
+              setCurrentUser={props.setCurrentUser}
+            />
           }
         />
         <Route
           exact
           path="/hotels/:id"
           element={
-            <HotelShow URL={props.URL} userIdLoggedIn={props.userIdLoggedIn} currentUser={props.currentUser} />
+            <HotelShow
+              URL={props.URL}
+              userIdLoggedIn={props.userIdLoggedIn}
+              currentUser={props.currentUser}
+              setUserId={props.setUserId}
+              setCurrentUser={props.setCurrentUser}
+            />
           }
         />
       </Routes>
@@ -65,7 +76,7 @@ const Main = (props) => {
               exact
               path="/profile"
               element={
-                <ProfileTest
+                <Profile
                   URL={props.URL}
                   userIdLoggedIn={props.userIdLoggedIn}
                   currentUser={props.currentUser}
@@ -84,8 +95,6 @@ const Main = (props) => {
           </Routes>
         </div>
       ) : null}
-
-      {/* <Footer /> */}
     </main>
   );
 };

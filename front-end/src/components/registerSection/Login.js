@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ handleLogin }) => {
+const Login = (props) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const URL =  `${props.URL}users/login`
+
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -12,9 +15,36 @@ const Login = ({ handleLogin }) => {
     try {
       const userObj = { userName, password };
       await handleLogin(userObj);
-      navigate('/'); // Redirect to the home page upon successful login
+      console.log(userObj)
+      navigate('/hotels'); // Redirect to the home page upon successful login
     } catch (error) {
       setError('Login failed. Please try again.');
+    }
+  };
+
+  const handleLogin = async (userObj) => {
+    console.log(userObj)
+    try {
+      const response = await fetch(URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userObj)
+      });
+
+      const data = await response.json();
+      if (data.userName) {
+        setErrorMessage('');
+        props.setCurrentUser(data);
+        props.setUserId(data.user_Id)
+        navigate('/hotels');
+      } else {
+        setErrorMessage(data.message || 'An error occurred');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('An error occurred while logging in.');
     }
   };
 

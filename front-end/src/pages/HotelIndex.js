@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import Header from "../components/headerSection/Header"
 
 const HotelIndex=(props)=>{
 
@@ -25,7 +26,6 @@ const HotelIndex=(props)=>{
         const response = await fetch(props.URL + "hotels")
         // turn response into javascript object
         const data = await response.json()
-        console.log(data)
         // set the hotels state to the data
         //console.log(data)
         setHotels(data)
@@ -40,7 +40,8 @@ const HotelIndex=(props)=>{
     const loaded = () => {
         
         return (
-        
+        <>
+        <Header currentUser={props.currentUser}/>
         <div className="HotelIndexContainer">
 
         
@@ -67,7 +68,8 @@ const HotelIndex=(props)=>{
         
         ))}
 
-        </div>)
+        </div>
+        </>)
     }
 
 

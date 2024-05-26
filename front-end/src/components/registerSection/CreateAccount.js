@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CreateAccount = ({ handleCreateUser }) => {
+const CreateAccount = (props) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -9,7 +9,7 @@ const CreateAccount = ({ handleCreateUser }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleCreateUser({ userName, password, firstName, lastName, description });
+    props.handleCreateUser({ userName, password, firstName, lastName, description });
     setUserName('');
     setPassword('');
     setFirstName('');

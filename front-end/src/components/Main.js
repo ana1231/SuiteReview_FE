@@ -20,15 +20,11 @@ const Main = (props) => {
         <main>
 
           <HeaderNav /> 
-          
           <Routes>
-            <Route path="/newReview" element={<NewReviewForm userIdLoggedIn={props.userIdLoggedIn} URL={props.URL} />} />
+
             <Route path="/" element={<Header />} />
-            <Route path="/register" element={<Register handleLogin={props.handleLogin} handleCreateUser={props.handleCreateUser} URL={props.URL}/>} />
-            <Route path="/profile" element={<Profile currentUser={props.currentUser} URL={props.URL}/>} />
-    
+            <Route path="/register" element={<Register handleCreateUser={props.handleCreateUser} URL={props.URL} userIdLoggedIn={props.userIdLoggedIn}/>} />
             <Route exact path="/hotels" element={<HotelIndex URL={props.URL} currentUser={props.currentUser} />}/>
-            
             <Route 
                 exact path="/hotels/:id" 
                 element={
@@ -39,6 +35,7 @@ const Main = (props) => {
                 }/>
             
             </Routes>
+            
             {props.userIdLoggedIn ?
             <div>
                 <Routes>
@@ -59,6 +56,7 @@ const Main = (props) => {
                                 currentUser={props.currentUser}
                             />
                         }/>
+                         <Route path="/newReview" element={<NewReviewForm userIdLoggedIn={props.userIdLoggedIn} URL={props.URL} />} />
                 </Routes>
             </div>
             :

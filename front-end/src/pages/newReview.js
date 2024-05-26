@@ -8,14 +8,14 @@ const NewReviewForm = (props) => {
 
   // State to hold the form data
   const [newForm, setNewForm] = useState({
-    hotel_Id: '',
-    user_Id: props.userIdLoggedIn, 
-    rating: '',  
-    description: ''
+    hotel_Id: "",
+    user_Id: props.userIdLoggedIn,
+    rating: "",
+    description: "",
   });
 
   // State to hold the backend URL which will be updated after hotel selection
-  const [backendURLReview, setBackendURLReview] = useState('');
+  const [backendURLReview, setBackendURLReview] = useState("");
 
   // Function to create a new review
   const createReview = async (review) => {
@@ -24,26 +24,26 @@ const NewReviewForm = (props) => {
     await fetch(backendURLReview, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(review)
+      body: JSON.stringify(review),
     });
   };
 
   // Handlers
   const handleChange = (event) => {
-    setNewForm(prev => ({
-      ...prev, 
-      [event.target.name]: event.target.value
+    setNewForm((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
     }));
   };
 
   const handleDropDown = (e) => {
-    setNewForm(prev => ({
-      ...prev, 
-      hotel_Id: e.value
+    setNewForm((prev) => ({
+      ...prev,
+      hotel_Id: e.value,
     }));
-    setBackendURLReview(`${props.URL}/reviews/${e.value}`);
+    setBackendURLReview(`${props.URL}reviews/${e.value}`);
   };
 
   const fixFormTypes = () => {
@@ -55,11 +55,11 @@ const NewReviewForm = (props) => {
   };
 
   const handleSubmit = (e) => {
-    console.log("success")
+    console.log("success");
     e.preventDefault();
     fixFormTypes();
     createReview(newForm);
-    navigate(`/test/profile`);
+    navigate(`/profile`);
   };
 
   return (
@@ -83,7 +83,7 @@ const NewReviewForm = (props) => {
             name="rating"
             onChange={handleChange}
           />
-        </label>    
+        </label>
 
         <label>
           <br></br>
@@ -94,17 +94,16 @@ const NewReviewForm = (props) => {
             value={newForm.description}
             name="description"
             onChange={handleChange}
-          />   
+          />
         </label>
         <br></br>
-        <input type="Submit" value="Submit Review" />            
+        <input type="Submit" value="Submit Review" />
       </form>
     </div>
   );
 };
 
 export default NewReviewForm;
-
 
 //Explanation
 
@@ -122,17 +121,14 @@ export default NewReviewForm;
 // Calls createReview to send the new review data to the backend.
 // Navigates to the /hotels page after successful submission.
 
-
 // Create Review Function:
 // Sends a POST request to the backend with the review data.
 // The backend URL is constructed using props.URL and the endpoint for creating reviews.
-
 
 // Form Rendering:
 // The form includes input fields for hotel selection, rating, and description.
 // The form submission button is labeled "Submit Review".
 
-
 //IMPORTANT
 
-//This page is currently placed in Main as 
+//This page is currently placed in Main as

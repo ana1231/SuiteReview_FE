@@ -1,62 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useHistory from React Router
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate(); // Get the history object
+const Login = (props) => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const URL = `${props.URL}users/login`;
 
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  //prob don't need it as I am setting the authentication in App
-  const handleLogin = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userName, password })
-      });
-
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-
-      const data = await response.json();
-      // Additional actions after successful login
-      console.log(data); // Handle successful login response
-
-      // Redirect to the home page
-      navigate('/');
+      const userObj = { userName, password };
+      handleLogin(userObj);
     } catch (error) {
-      setError('Login failed. Please try again.');
+      setError("Login failed. Please try again.");
     }
   };
 
-  //Save token to the browser -  read more about it
+  const handleLogin = async (userObj) => {
+    try {
+      const response = await fetch(URL, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userObj),
+      });
+
+      const data = await response.json();
+      if (data.userName) {
+        setErrorMessage("");
+        props.setCurrentUser(data);
+        props.setUserId(data.user_Id);
+        navigate("/hotels");
+      } else {
+        setErrorMessage(data || "An error occurred");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage("An error occurred while logging in.");
+    }
+  };
 
   return (
     <div className="login-form">
       <h2>Login</h2>
-      <div>
-        <input
-          type="text"
-          placeholder="Username"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {error && <div style={{ color: "red" }}>{error}</div>}
+        <button type="submit">Login</button>
+      </form>
+      <div className="error-message-login">
+        <p>{errorMessage}</p>
       </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

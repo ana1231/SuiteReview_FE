@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const HeaderNav=(props)=> {
+const HeaderNav = (props) => {
   //inline style for the nav tag
   const navStyle = {
     display: "flex",
@@ -21,10 +21,9 @@ const HeaderNav=(props)=> {
         <Link to="/test/profile">
           <div>TEST PROFILE</div>
         </Link>
-
       </nav>
     </header>
   );
-}
+};
 
 export default HeaderNav;

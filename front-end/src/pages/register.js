@@ -10,8 +10,10 @@ const Register = (props)=> {
     <>
     <Header/>
   <div className="register-section">
-    <Login handleLogin={props.handleLogin} URL={props.URL}/>
-    <CreateAccount handleCreateUser={props.handleCreateUser} URL={props.URL}/>
+    <Login handleLogin={props.handleLogin} URL={props.URL} setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}/>
+    <CreateAccount handleCreateUser={props.handleCreateUser} URL={props.URL} setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}/>
   </div>
   </>)
   

@@ -41,7 +41,7 @@ const HotelIndex=(props)=>{
         
         return (
         <>
-        <Header currentUser={props.currentUser}/>
+        <Header currentUser={props.currentUser} userLoggedIn={props.userLoggedIn}/>
         <div className="HotelIndexContainer">
 
         

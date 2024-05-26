@@ -43,7 +43,7 @@ const NewReviewForm = (props) => {
       ...prev, 
       hotel_Id: e.value
     }));
-    setBackendURLReview(`${props.URL}/reviews/${e.value}`);
+    setBackendURLReview(`${props.URL}reviews/${e.value}`);
   };
 
   const fixFormTypes = () => {
@@ -59,7 +59,7 @@ const NewReviewForm = (props) => {
     e.preventDefault();
     fixFormTypes();
     createReview(newForm);
-    navigate(`/test/profile`);
+    navigate(`/profile`);
   };
 
   return (

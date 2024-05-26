@@ -14,19 +14,18 @@ const Login = (props) => {
     event.preventDefault();
     try {
       const userObj = { userName, password };
-      await handleLogin(userObj);
-      console.log(userObj)
-      navigate('/hotels'); // Redirect to the home page upon successful login
+      handleLogin(userObj);
+      console.log(userObj); // Redirect to the home page upon successful login
     } catch (error) {
       setError('Login failed. Please try again.');
     }
   };
 
   const handleLogin = async (userObj) => {
-    console.log(userObj)
+    
     try {
       const response = await fetch(URL, {
-        method: 'PUT',
+        method: 'put',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -37,7 +36,8 @@ const Login = (props) => {
       if (data.userName) {
         setErrorMessage('');
         props.setCurrentUser(data);
-        props.setUserId(data.user_Id)
+        props.setUserId(data.user_Id);
+        console.log(data.user_Id)
         navigate('/hotels');
       } else {
         setErrorMessage(data.message || 'An error occurred');

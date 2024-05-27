@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Reviews from "../components/Reviews";
 import Header from "../components/headerSection/Header";
 import { useNavigate } from "react-router-dom";
-import NewReviewForm from "./NewReview";
+//import NewReviewForm from "./NewReview";
 import { Link } from "react-router-dom";
 
 const Profile = (props) => {

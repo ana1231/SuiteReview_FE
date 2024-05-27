@@ -5,12 +5,14 @@ import Header from "./headerSection/Header";
 // import HeaderNav from "./HeaderNav";
 
 // IMPORT PAGES
-import Register from "../pages/Register";
+//import Register from "../pages/Register";
+import Register from "../pages/register";
 import HotelIndex from "../pages/HotelIndex";
 import HotelShow from "../pages/HotelShow";
 import UpdateReview from "../pages/UpdateReview";
 import Profile from "../pages/ProfileTest";
-import NewReviewForm from "../pages/NewReview";
+//import NewReviewForm from "../pages/NewReview";
+import NewReviewForm from "../pages/newReview";
 
 const Main = (props) => {
   return (

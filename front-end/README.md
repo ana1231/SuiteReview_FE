@@ -536,15 +536,80 @@ The routes are protected based on the props passed down from App.js to Main.js.
  
 #### Back End
 ***
+The Bcrypt library was used in the backend.
+
+The passwords for the seeds were hashed and saved:
+
+```javascript
+bcrypt.hashSync(userSeeds[i]['password'] , bcrypt.genSaltSync(10))
+```
+<br>
+<br>
+
+#### Login
+***
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| PUT   | /users/login      |Login     | already user   |
+
+<br>
+<br>
+A user is searched for based on the userName sent from React"
+
+```javascript
+User.findOne({'userName':req.body.userName})
+```
+<br>
+<br>
+
+If the user exists, the password is checked to see if it's a match:
+```javascript
+passwordMatch =  bcrypt.compareSync(req.body.password, foundUser.password)
+```
+<br>
+<br>
+
+If the user exists and the password matches, the user json is send to React with all the information except the password.
+<br>
+<br>
+#### Create an Account
+***
+|HTTP Verb  |URL   | Action      | Explaination          |
+|-----------|------|-------------|-----------------------|
+| POST   | /users/new      |Create      | create new user   |
+
+<br>
+<br>
+
+If the json React sent contains a password, it is hashed in preparation to be stored in the database:
+```javascript
+req.body.password ? bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)) : null
+```
+<br>
+<br>
+
+If the following checks pass, the new account is sent back to React without the password:
+
+**Checks to Pass**
+- The follow exist:
+  - userName
+  - firstName
+  - lastNam
+  - password
+- The username does not already exist in the database
+
+
+
 
 ## Unsolved Problems
 
 - Error Handling
+- Carousel
 
-**(In progress)**
+
   
 ## Forthcoming Features
 
 - Error Handling
+- Carousel
 
-**(In progress)**

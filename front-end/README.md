@@ -500,7 +500,7 @@ graph TB
 
         props
         setCurrentUser: setCurrentUser
-        currentuser: currentuser ]
+        currentUser: currentUser ]
 
     
     D[Main.js 

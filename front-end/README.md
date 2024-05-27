@@ -209,11 +209,15 @@ App
 |-----------|------|-------------|-----------------------|
 | POST  | /reviews/:hotel_ID     | Create  | create new review|
 
-Back End: This action takes the review information from the request sent from the front end and creates a new document:
+<br>
+:cyclone: Back End: This action takes the review information from the request sent from the front end and creates a new document:
+
 ```javascript
 Review.create(newObj)
 ```
-Location in the component diagram:
+<br>
+
+:cyclone: Location in the component diagram:
 ``````
 App
 │
@@ -223,6 +227,8 @@ App
              └──NewReviewForm
 
 ``````
+
+<br>
 
 Illustration of communication:
 
@@ -241,6 +247,8 @@ graph LR;
 ```
 
 
+<br>
+
 #### Read
 ***
 There are a few GET routes. This section will focus on the Review.js component under the hotel show page.
@@ -250,10 +258,20 @@ There are a few GET routes. This section will focus on the Review.js component u
 | GET   | /reviews/:hotel_ID     |Index     | returns list of reviews for particular hotel   |
 
 
+<br>
+
 Back End: Used to find all the documents of Hotels for a particular hotel:
+
+
+
 ```javascript
 Review.find({hotel_Id: Number(req.params.hotel_id)})
 ```
+
+
+<br>
+
+
 Location in the component diagram:
 ``````
 App
@@ -263,6 +281,10 @@ App
         └── Review
 
 ``````
+
+
+<br>
+
 Illustration of communication:
 
 ```mermaid
@@ -280,6 +302,10 @@ graph LR;
 
 ```
 
+
+<br>
+
+
 #### Update
 ***
 Although it appears twice on the tree diagram, this section will use the hotel show page branch because the functionality is the same on both branches.
@@ -288,11 +314,18 @@ Although it appears twice on the tree diagram, this section will use the hotel s
 |-----------|------|-------------|-----------------------|
 | PUT   | /reviews/:id           | Update  | updates a particular review|
 
+<br>
+
+
 Back End: Used to find particular the document of Reviews and update it:
 
 ```javascript
 Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
 ```
+
+<br>
+
+
 Location in the component diagram:
 ``````
 App
@@ -306,6 +339,10 @@ App
 
 ``````
 
+
+<br>
+
+
 Illustration of communication:
 
 ```mermaid
@@ -318,11 +355,12 @@ graph LR;
         id1[(Reviews Collection)]-->|4| D[reviews/documents]
     D -->|5|B
 
-    
-
-
 
 ```
+
+
+<br>
+
 
 #### Delete
 ***
@@ -332,11 +370,19 @@ Although it appears twice on the diagram, this section will use the hotel show p
 |-----------|------|-------------|-----------------------|
 | DELETE| /reviews/:id           | Delete  | deletes a particular review|
 
+
+<br>
+
+
 Back End: Used to find a particular the document of Reviews and delete it:
 
 ```javascript
 Review.findByIdAndDelete(req.params.id)
 ```
+
+
+<br>
+
 
 Location in the component diagram:
 ``````
@@ -351,6 +397,10 @@ App
 
 ``````
 
+
+<br>
+
+
 Illustration of communication:
 
 ```mermaid
@@ -363,9 +413,11 @@ graph LR;
     id1[(Reviews Collection)]-->|4 - success| B
 
 
-
-
 ```
+
+
+<br>
+
 ## Authentification
 
 **(In progress)**

@@ -50,15 +50,16 @@ As a user, I should be able to view the reviews that I have submitted.
 #### Users
 ***
 
-|HTTP Verb  |URL   | Action      | Explaination          |
-|-----------|------|-------------|-----------------------|
-| GET  | /users          |Index   | returns all users |
-| GET  | /users/profile  |Show    | returns particular user|
-| POST | /users/new      |Create  | create new user|
-| POST | /users/login    |Create  | log in - already a user|
+|HTTP Verb  |URL                    | Action      | Explaination          |
+|-----------|-----------------------|-------------|-----------------------|
+| GET  | /users                     |Index   | returns all users |
+| GET  | /users/profile/:user_Id    |Show    | returns particular user|
+| POST | /users/new                 |Create  | create new user|
+| PUT  | /users/login               |Create  | log in - already a user|
 
 #### Reviews
-#### *FULL CRUD*
+> [!NOTE]
+> *Full CRUD for Reviews* 
 ***
 
 |HTTP Verb  |URL   | Action      | Explaination          |
@@ -109,39 +110,67 @@ erDiagram
         number ave_rating
     }
 
-
-
 ```
+
+### MVC Structure of the Backend
+***
+``````
+server.js
+│
+models
+│   ├──hotels.js
+│   ├──reviews.js
+│   └──users.js
+│
+controllers
+│   ├──hotels.js
+│   ├──reviews.js
+│   └──users.js
+│
+seedDataHotel.js
+│
+seedDataReviews.js
+│
+seedDateUsers.js
+
+
+``````
 
 ### React Diagram (Document Tree)
 ***
 
-![ReactDiagram](public/images/ReactTreeDiagram.jpg)
+![ReactDiagram](public/images/ReactTreeDiagramV2.png)
 
 ### Nested Component Structure of the Application
 ***
 ``````
 App
 │
-├── Main
-│   ├── HotelIndex
-|   |
-│   ├── HotelShow
-|   |   └── Review
-|   |        └── OneReview
-|   |            ├── DeleteButton
-|   |            └── UpdateButton
-|   |                └── UpdateReview
-│   |    
-│   └── Profile
-|       └── Review
-|            └── OneReview
-|                ├── DeleteButton
-|                └── UpdateButton
-|                    └── UpdateReview
-│       
-│
-└── Footer?
+└── Main
+    ├── HotelIndex
+    |
+    ├── HotelShow
+    |   └── Review
+    |        └── OneReview
+    |            ├── DeleteButton
+    |            └── UpdateButton
+    |                └── UpdateReview
+    |    
+    ├── Profile
+    |  └── Review
+    |        ├── NewReviewForm
+    |        └── OneReview
+    |            ├── DeleteButton
+    |            └── UpdateButton
+    |                └── UpdateReview
+    |    
+    ├── Register
+    |    ├── Login
+    |    └── CreateAccount 
+    |
+    └── Header  
+
+
 
 ``````
 
@@ -150,20 +179,25 @@ App
 
 
 - **App**: The root component. Sends user_Id down stream.
-  - **Main**: Contains the routes (Profile, Index, Show, and Update pages)
-    - **Page - HotelIndex**: Views all hotels with minimal information.
+  - **Main**: Contains the routes (Profile, Index, Show, Update, Register, and Header pages)
+    - **Page - HotelIndex**: All hotels with minimal information.
     - **Page - HotelShow**: Shows a hotel with its details and all of its reviews.
       - **Component - Review**: Section containing all the reviews.
+        - **Component - NewReviewForm**: Create a review.
         - **Component - OneReview**: A review for that hotel.
           - **Component - DeleteButton**: Deletes a review.
           - **Component - UpdateButton**: Links to the UpdateReview page.
             - **Page - UpdateReview**: Form to update review.
-  - **Page - Profile**: Contains the user's information and all reviews for that user.
+    - **Page - Profile**: Contains the user's information and all reviews for that user.
       - **Component - Review**: Section containing all the reviews.
         - **Component - OneReview**: A review for that user.
           - **Component - DeleteButton**: Deletes a review.
           - **Component - UpdateButton**: Links to the UpdateReview page.
             - **Page - UpdateReview**: Form to update review.
+    - **Page - Register**: Contains the Login and CreateAccount component.
+      - **Component - Login**: Existing user logs in.
+      - **Component - CreateAccount**: New user creates an account.
+    - **Component - Header**: Link to Home; Logged in: Link to Profile; Logged out: Link to Login/Register
 
 
 ## Full CRUD (Create, Read, Update, and Delete)
@@ -171,20 +205,33 @@ App
 #### Create
 ***
 
-**(In progress - Needs Component Diagram)**
 |HTTP Verb  |URL   | Action      | Explaination          |
 |-----------|------|-------------|-----------------------|
 | POST  | /reviews/:hotel_ID     | Create  | create new review|
 
-Back End: This action takes the review information from the request sent from the front end and creates a new document:
+<br>
+:mag_right: Back End: This action takes the review information from the request sent from the front end and creates a new document:
+
 ```javascript
 Review.create(newObj)
 ```
-Location in the component diagram:
+<br>
 
-**(In progress - Needs Component Diagram)**
+:mag_right: Location in the component diagram:
 
-Illustration of communication:
+``````
+App
+│
+└── Main    
+    └── Profile
+       └── Review
+             └──NewReviewForm
+
+``````
+
+<br>
+
+:mag_right: Illustration of communication:
 
 ```mermaid
 graph LR;
@@ -201,6 +248,8 @@ graph LR;
 ```
 
 
+<br>
+
 #### Read
 ***
 There are a few GET routes. This section will focus on the Review.js component under the hotel show page.
@@ -210,11 +259,21 @@ There are a few GET routes. This section will focus on the Review.js component u
 | GET   | /reviews/:hotel_ID     |Index     | returns list of reviews for particular hotel   |
 
 
-Back End: Used to find all the documents of Hotels for a particular hotel:
+<br>
+
+:mag_right: Back End: Used to find all the documents of Hotels for a particular hotel:
+
+
+
 ```javascript
 Review.find({hotel_Id: Number(req.params.hotel_id)})
 ```
-Location in the component diagram:
+
+
+<br>
+
+
+:mag_right: Location in the component diagram:
 ``````
 App
 │
@@ -223,7 +282,11 @@ App
         └── Review
 
 ``````
-Illustration of communication:
+
+
+<br>
+
+:mag_right: Illustration of communication:
 
 ```mermaid
 graph LR;
@@ -240,6 +303,10 @@ graph LR;
 
 ```
 
+
+<br>
+
+
 #### Update
 ***
 Although it appears twice on the tree diagram, this section will use the hotel show page branch because the functionality is the same on both branches.
@@ -248,12 +315,19 @@ Although it appears twice on the tree diagram, this section will use the hotel s
 |-----------|------|-------------|-----------------------|
 | PUT   | /reviews/:id           | Update  | updates a particular review|
 
-Back End: Used to find particular the document of Reviews and update it:
+<br>
+
+
+:mag_right: Back End: Used to find particular the document of Reviews and update it:
 
 ```javascript
 Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
 ```
-Location in the component diagram:
+
+<br>
+
+
+:mag_right: Location in the component diagram:
 ``````
 App
 │
@@ -266,7 +340,11 @@ App
 
 ``````
 
-Illustration of communication:
+
+<br>
+
+
+:mag_right: Illustration of communication:
 
 ```mermaid
 graph LR;
@@ -275,12 +353,15 @@ graph LR;
     A{REACT - UpdateReview.js}--->| 1 - req to backend| B{Back End Server}
     B-->|2| C[PUT route] 
     C-->|3 - query|id1[(Reviews Collection)]
-    id1[(Reviews Collection)] -->|4 - success|B
-    
-
+        id1[(Reviews Collection)]-->|4| D[reviews/documents]
+    D -->|5|B
 
 
 ```
+
+
+<br>
+
 
 #### Delete
 ***
@@ -290,13 +371,21 @@ Although it appears twice on the diagram, this section will use the hotel show p
 |-----------|------|-------------|-----------------------|
 | DELETE| /reviews/:id           | Delete  | deletes a particular review|
 
-Back End: Used to find a particular the document of Reviews and delete it:
+
+<br>
+
+
+:mag_right: Back End: Used to find a particular the document of Reviews and delete it:
 
 ```javascript
 Review.findByIdAndDelete(req.params.id)
 ```
 
-Location in the component diagram:
+
+<br>
+
+
+:mag_right: Location in the component diagram:
 ``````
 App
 │
@@ -309,7 +398,11 @@ App
 
 ``````
 
-Illustration of communication:
+
+<br>
+
+
+:mag_right: Illustration of communication:
 
 ```mermaid
 graph LR;
@@ -321,9 +414,11 @@ graph LR;
     id1[(Reviews Collection)]-->|4 - success| B
 
 
-
-
 ```
+
+
+<br>
+
 ## Authentification
 
 **(In progress)**

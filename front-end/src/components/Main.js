@@ -15,6 +15,7 @@ import Profile from "../pages/ProfileTest";
 import NewReviewForm from "../pages/newReview";
 
 const Main = (props) => {
+  console.log(props)
   return (
     <main>
       {/* <HeaderNav /> */}

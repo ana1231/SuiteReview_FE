@@ -421,7 +421,79 @@ graph LR;
 
 ## Authentification
 
-**(In progress)**
+In React, App.js will hold the login information which will be passed down to the child.  The fields used for this are:
+
+- <code>currentUser</code> - a json that contains all the user's infomation except the password
+- <code>user_Id</code> - unique ID for that user
+
+:mag_right: Illustration of Authentification from App.js to Main.js:
+
+
+```mermaid
+
+
+graph TB
+    
+    A[App.js]
+        
+    B[Main.js]
+
+    A ---> B
+    A -.->|Logged In : 
+            currentUser = info, user_Id = info
+            Logged Out: 
+                currentUser = null, user_Id = null| B
+    
+```
+
+
+The React Hook <code>useState</code> adds state variables(<code>currentUser</code> and <code>user_Id</code>) in App.js (see below).
+
+
+:mag_right: useState in App.js:
+```javascript
+  const [currentUser, setCurrentUser] = useState({});
+  const [user_Id, setUserId] = useState('');
+```
+
+:mag_right: Illustration of App.js passing props to Main.js based on whether or not the user is logged in:
+
+
+
+
+```mermaid
+
+graph TB
+    
+    A[App.js
+
+     useState: 
+     currentUser, setCurrentUser]
+
+    B{Logged In?}
+    
+
+        
+    C[Main.js
+
+        props
+        setCurrentUser: setCurrentUser
+        currentuser: currentuser ]
+
+    
+    D[Main.js 
+
+        props 
+        setCurrentUser: setCurrentUser
+        currentuser: null ]
+        
+
+    A --> B
+    B-.->|yes| C
+    B-.->|no| D
+
+    
+```
 
 ## Unsolved Problems
 

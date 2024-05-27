@@ -197,7 +197,7 @@ App
     - **Page - Register**: Contains the Login and CreateAccount component.
       - **Component - Login**: Existing user logs in.
       - **Component - CreateAccount**: New user creates an account.
-    - **Page - Header**: Link to Home; Logged in: Link to Profile; Logged out: Link to Login/Register
+    - **Component - Header**: Link to Home; Logged in: Link to Profile; Logged out: Link to Login/Register
 
 
 ## Full CRUD (Create, Read, Update, and Delete)

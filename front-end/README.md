@@ -441,10 +441,10 @@ graph LR;
 ***
 In React, App.js will hold the login information which will be passed down to the children.  The fields used for this are:
 
-- <code>currentUser</code> - a json that contains all the user's infomation except the password
+- <code>currentUser</code> - a json that contains all the user's information except the password
 - <code>user_Id</code> - unique ID for that user
 
-:mag_right: Illustration of Authentification from App.js to Main.js:
+:mag_right: Illustration of Authentication from App.js to Main.js:
 
 
 ```mermaid
@@ -554,7 +554,7 @@ bcrypt.hashSync(userSeeds[i]['password'] , bcrypt.genSaltSync(10))
 
 <br>
 <br>
-A user is searched for based on the userName sent from React"
+A user is searched for based on the userName sent from React:
 
 ```javascript
 User.findOne({'userName':req.body.userName})
@@ -569,7 +569,7 @@ passwordMatch =  bcrypt.compareSync(req.body.password, foundUser.password)
 <br>
 <br>
 
-If the user exists and the password matches, the user json is send to React with all the information except the password.
+If the user exists and the password matches, the user json is sent to React with all the information except the password.
 <br>
 <br>
 #### Create an Account
@@ -604,7 +604,7 @@ If the following checks pass, the new account is sent back to React without the 
 ## Unsolved Problems
 
 - Error Handling
-- Carousel
+- Carousel for images
 
 
   

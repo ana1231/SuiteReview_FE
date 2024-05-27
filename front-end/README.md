@@ -50,12 +50,12 @@ As a user, I should be able to view the reviews that I have submitted.
 #### Users
 ***
 
-|HTTP Verb  |URL   | Action      | Explaination          |
-|-----------|------|-------------|-----------------------|
-| GET  | /users          |Index   | returns all users |
-| GET  | /users/profile  |Show    | returns particular user|
-| POST | /users/new      |Create  | create new user|
-| POST | /users/login    |Create  | log in - already a user|
+|HTTP Verb  |URL                    | Action      | Explaination          |
+|-----------|-----------------------|-------------|-----------------------|
+| GET  | /users                     |Index   | returns all users |
+| GET  | /users/profile/:user_Id    |Show    | returns particular user|
+| POST | /users/new                 |Create  | create new user|
+| PUT  | /users/login               |Create  | log in - already a user|
 
 #### Reviews
 #### *FULL CRUD*
@@ -116,32 +116,38 @@ erDiagram
 ### React Diagram (Document Tree)
 ***
 
-![ReactDiagram](public/images/ReactTreeDiagram.jpg)
+![ReactDiagram](public/images/ReactTreeDiagramV2.png)
 
 ### Nested Component Structure of the Application
 ***
 ``````
 App
 │
-├── Main
-│   ├── HotelIndex
-|   |
-│   ├── HotelShow
-|   |   └── Review
-|   |        └── OneReview
-|   |            ├── DeleteButton
-|   |            └── UpdateButton
-|   |                └── UpdateReview
-│   |    
-│   └── Profile
-|       └── Review
-|            └── OneReview
-|                ├── DeleteButton
-|                └── UpdateButton
-|                    └── UpdateReview
-│       
-│
-└── Footer?
+└── Main
+    ├── HotelIndex
+    |
+    ├── HotelShow
+    |   └── Review
+    |        └── OneReview
+    |            ├── DeleteButton
+    |            └── UpdateButton
+    |                └── UpdateReview
+    |    
+    ├── Profile
+    |  └── Review
+    |        ├── NewReviewForm
+    |        └── OneReview
+    |            ├── DeleteButton
+    |            └── UpdateButton
+    |                └── UpdateReview
+    |    
+    ├── Register
+    |    ├── Login
+    |    └── CreateAccount 
+    |
+    └── Header  
+
+
 
 ``````
 
@@ -150,20 +156,25 @@ App
 
 
 - **App**: The root component. Sends user_Id down stream.
-  - **Main**: Contains the routes (Profile, Index, Show, and Update pages)
-    - **Page - HotelIndex**: Views all hotels with minimal information.
+  - **Main**: Contains the routes (Profile, Index, Show, Update, Register, and Header pages)
+    - **Page - HotelIndex**: All hotels with minimal information.
     - **Page - HotelShow**: Shows a hotel with its details and all of its reviews.
       - **Component - Review**: Section containing all the reviews.
+        - **Component - NewReviewForm**: Create a review.
         - **Component - OneReview**: A review for that hotel.
           - **Component - DeleteButton**: Deletes a review.
           - **Component - UpdateButton**: Links to the UpdateReview page.
             - **Page - UpdateReview**: Form to update review.
-  - **Page - Profile**: Contains the user's information and all reviews for that user.
+    - **Page - Profile**: Contains the user's information and all reviews for that user.
       - **Component - Review**: Section containing all the reviews.
         - **Component - OneReview**: A review for that user.
           - **Component - DeleteButton**: Deletes a review.
           - **Component - UpdateButton**: Links to the UpdateReview page.
             - **Page - UpdateReview**: Form to update review.
+    - **Page - Register**: Contains the Login and CreateAccount component.
+      - **Component - Login**: Existing user logs in.
+      - **Component - CreateAccount**: New user creates an account.
+    - **Page - Header**: Link to Home; Logged in: Link to Profile; Logged out: Link to Login/Register
 
 
 ## Full CRUD (Create, Read, Update, and Delete)
@@ -181,8 +192,15 @@ Back End: This action takes the review information from the request sent from th
 Review.create(newObj)
 ```
 Location in the component diagram:
+``````
+App
+│
+└── Main    
+    └── Profile
+       └── Review
+             └──NewReviewForm
 
-**(In progress - Needs Component Diagram)**
+``````
 
 Illustration of communication:
 
@@ -275,7 +293,9 @@ graph LR;
     A{REACT - UpdateReview.js}--->| 1 - req to backend| B{Back End Server}
     B-->|2| C[PUT route] 
     C-->|3 - query|id1[(Reviews Collection)]
-    id1[(Reviews Collection)] -->|4 - success|B
+        id1[(Reviews Collection)]-->|4| D[reviews/documents]
+    D -->|5|B
+
     
 
 

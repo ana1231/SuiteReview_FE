@@ -1,23 +1,18 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-// <OneReview 
+// <OneReview
 // review = {review}
 // updateReview = {updateReview}
 // deleteReview = {deleteReview}/>
 
 //https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
 
-const UpdateButton = (props)=>{
+const UpdateButton = (props) => {
+  return (
+    <Link to={`/reviews/${props.review._id}`}>
+      <button>Update</button>
+    </Link>
+  );
+};
 
-    return(
-        
-        <Link to = {`/reviews/${props.review._id}`}>
-            <button>
-                Update
-            </button>
-        </Link>
-
-    )
-}
-
-export default UpdateButton
+export default UpdateButton;

@@ -1,29 +1,55 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-const CreateAccount = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [description, setDescription] = useState('');
+const CreateAccount = (props) => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [description, setDescription] = useState("");
+  const [userImage, setUserImage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const URL = `${props.URL}users/new`;
   const navigate = useNavigate();
-
-  //check notes, last week, object back
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Sending data to the server
-    console.log('Form submitted!');
-    console.log('Username:', userName);
-    console.log('Password:', password);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Description:', description);
-    // After handling form submission, you can redirect to another page
-    navigate('/'); // Redirect to the home page
+    const userObj = { userName, password, firstName, lastName, description };
+    handleCreateUser(userObj);
+    setUserName("");
+    setPassword("");
+    setFirstName("");
+    setLastName("");
+    setDescription("");
+    setUserImage("");
   };
 
+  const handleCreateUser = async (userObj) => {
+    try {
+      const response = await fetch(URL, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userObj),
+      });
+
+      const data = await response.json();
+      if (data.userName) {
+        setErrorMessage("");
+        props.setCurrentUser(data);
+        props.setUserId(data.user_Id);
+        navigate("/hotels");
+      } else {
+        setErrorMessage(data.message || "An error occurred");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage("An error occurred while creating the account.");
+    }
+  };
+
+  //print error message
   return (
     <div className="create-account-form">
       <h2>Create Account</h2>
@@ -67,8 +93,18 @@ const CreateAccount = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
+        <div>
+          <label>Profile Image:</label>
+          <textarea
+            value={userImage}
+            onChange={(e) => setUserImage(e.target.value)}
+          />
+        </div>
         <button type="submit">Create Account</button>
       </form>
+      <div className="error-message-createUser">
+        <p>{errorMessage}</p>
+      </div>
     </div>
   );
 };

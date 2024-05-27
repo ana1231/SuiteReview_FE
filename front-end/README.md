@@ -375,7 +375,7 @@ Although it appears twice on the diagram, this section will use the hotel show p
 <br>
 
 
-Back End: Used to find a particular the document of Reviews and delete it:
+:mag_right: Back End: Used to find a particular the document of Reviews and delete it:
 
 ```javascript
 Review.findByIdAndDelete(req.params.id)
@@ -385,7 +385,7 @@ Review.findByIdAndDelete(req.params.id)
 <br>
 
 
-Location in the component diagram:
+:mag_right: Location in the component diagram:
 ``````
 App
 │
@@ -402,7 +402,7 @@ App
 <br>
 
 
-Illustration of communication:
+:mag_right: Illustration of communication:
 
 ```mermaid
 graph LR;

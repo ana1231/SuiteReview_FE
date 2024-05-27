@@ -210,11 +210,13 @@ App
 | POST  | /reviews/:hotel_ID     | Create  | create new review|
 
 <br>
+<br>
 :mag_right: Back End: This action takes the review information from the request sent from the front end and creates a new document:
 
 ```javascript
 Review.create(newObj)
 ```
+<br>
 <br>
 
 :mag_right: Location in the component diagram:
@@ -229,6 +231,7 @@ App
 
 ``````
 
+<br>
 <br>
 
 :mag_right: Illustration of communication:
@@ -249,6 +252,7 @@ graph LR;
 
 
 <br>
+<br>
 
 #### Read
 ***
@@ -260,6 +264,7 @@ There are a few GET routes. This section will focus on the Review.js component u
 
 
 <br>
+<br>
 
 :mag_right: Back End: Used to find all the documents of Hotels for a particular hotel:
 
@@ -270,6 +275,7 @@ Review.find({hotel_Id: Number(req.params.hotel_id)})
 ```
 
 
+<br>
 <br>
 
 
@@ -284,6 +290,7 @@ App
 ``````
 
 
+<br>
 <br>
 
 :mag_right: Illustration of communication:
@@ -305,6 +312,7 @@ graph LR;
 
 
 <br>
+<br>
 
 
 #### Update
@@ -316,6 +324,7 @@ Although it appears twice on the tree diagram, this section will use the hotel s
 | PUT   | /reviews/:id           | Update  | updates a particular review|
 
 <br>
+<br>
 
 
 :mag_right: Back End: Used to find particular the document of Reviews and update it:
@@ -324,6 +333,7 @@ Although it appears twice on the tree diagram, this section will use the hotel s
 Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
 ```
 
+<br>
 <br>
 
 
@@ -341,6 +351,7 @@ App
 ``````
 
 
+<br>
 <br>
 
 
@@ -361,6 +372,7 @@ graph LR;
 
 
 <br>
+<br>
 
 
 #### Delete
@@ -373,6 +385,7 @@ Although it appears twice on the diagram, this section will use the hotel show p
 
 
 <br>
+<br>
 
 
 :mag_right: Back End: Used to find a particular the document of Reviews and delete it:
@@ -382,6 +395,7 @@ Review.findByIdAndDelete(req.params.id)
 ```
 
 
+<br>
 <br>
 
 
@@ -399,6 +413,7 @@ App
 ``````
 
 
+<br>
 <br>
 
 
@@ -418,10 +433,13 @@ graph LR;
 
 
 <br>
+<br>
 
 ## Authentification
 
-In React, App.js will hold the login information which will be passed down to the child.  The fields used for this are:
+#### Front End
+***
+In React, App.js will hold the login information which will be passed down to the children.  The fields used for this are:
 
 - <code>currentUser</code> - a json that contains all the user's infomation except the password
 - <code>user_Id</code> - unique ID for that user
@@ -445,7 +463,8 @@ graph TB
                 currentUser = null, user_Id = null| B
     
 ```
-
+<br>
+<br>
 
 The React Hook <code>useState</code> adds state variables(<code>currentUser</code> and <code>user_Id</code>) in App.js (see below).
 
@@ -455,6 +474,8 @@ The React Hook <code>useState</code> adds state variables(<code>currentUser</cod
   const [currentUser, setCurrentUser] = useState({});
   const [user_Id, setUserId] = useState('');
 ```
+<br>
+<br>
 
 :mag_right: Illustration of App.js passing props to Main.js based on whether or not the user is logged in:
 
@@ -468,7 +489,8 @@ graph TB
     A[App.js
 
      useState: 
-     currentUser, setCurrentUser]
+     currentUser, setCurrentUser
+     user_Id, setUserId ]
 
     B{Logged In?}
     
@@ -494,6 +516,26 @@ graph TB
 
     
 ```
+<br>
+<br>
+
+The routes are protected based on the props passed down from App.js to Main.js.
+
+**Not Protect**
+- <code>exact path="/"</code>  Component - Header
+- <code>exact path="/register"</code> Component - Register
+- <code>exact path="/hotels"</code> Component - HotelIndex
+- <code>exact path="/hotels/:id"</code> Component - HotelShow
+
+**Protect**
+- <code>exact path="/reviews/:id"</code> Component - UpdateReview
+- <code>exact path="/profile"</code> Component - Profile
+- <code>exact path="/newReview"</code> Component - NewReviewForm
+ <br>
+ <br>
+ 
+#### Back End
+***
 
 ## Unsolved Problems
 

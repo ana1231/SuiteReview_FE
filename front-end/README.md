@@ -109,9 +109,31 @@ erDiagram
         number ave_rating
     }
 
-
-
 ```
+
+### MVC Structure of the Backend
+***
+``````
+server.js
+│
+models
+│   ├──hotels.js
+│   ├──reviews.js
+│   └──users.js
+│
+controllers
+│   ├──hotels.js
+│   ├──reviews.js
+│   └──users.js
+│
+seedDataHotel.js
+│
+seedDataReviews.js
+│
+seedDateUsers.js
+
+
+``````
 
 ### React Diagram (Document Tree)
 ***
@@ -182,7 +204,6 @@ App
 #### Create
 ***
 
-**(In progress - Needs Component Diagram)**
 |HTTP Verb  |URL   | Action      | Explaination          |
 |-----------|------|-------------|-----------------------|
 | POST  | /reviews/:hotel_ID     | Create  | create new review|

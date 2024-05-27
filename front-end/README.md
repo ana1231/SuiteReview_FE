@@ -507,7 +507,7 @@ graph TB
 
         props 
         setCurrentUser: setCurrentUser
-        currentuser: null ]
+        currentUser: null ]
         
 
     A --> B

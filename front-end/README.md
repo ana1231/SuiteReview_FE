@@ -591,7 +591,7 @@ req.body.password ? bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)) :
 If the following checks pass, the new account is sent back to React without the password:
 
 **Checks to Pass**
-- The follow exist:
+- The following exist:
   - userName
   - firstName
   - lastNam

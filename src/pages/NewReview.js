@@ -19,9 +19,11 @@ const NewReviewForm = (props) => {
 
   // Function to create a new review
   const createReview = async (review) => {
+    const testURL = `${props.URL}reviews/${newForm.hotel_Id}`
     console.log(`Creating new review`);
     console.log(review);
-    await fetch(backendURLReview, {
+    //await fetch(backendURLReview, {
+    await fetch(testURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

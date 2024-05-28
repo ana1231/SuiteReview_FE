@@ -14,7 +14,7 @@ const CreateAccount = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const userObj = { userName, password, firstName, lastName, description };
+    const userObj = { userName, password, firstName, lastName, description, userImage };
     handleCreateUser(userObj);
     setUserName("");
     setPassword("");

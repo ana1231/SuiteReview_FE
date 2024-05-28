@@ -1,0 +1,215 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.register-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 30px 30px 30px 30px;
+}
+
+.login-form {
+  width: calc(40% - 10px)
+}
+
+.create-account-form {
+  width: calc(40% - 10px);
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.create-account-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-account-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-account-form label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.create-account-form input,
+.create-account-form textarea {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-account-form button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-account-form button:hover {
+  background-color: #0056b3;
+}
+
+/* TEMP for building - Can change*/
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.App,  body, .HotelIndexContainer{
+
+
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.hotels, .hotel, .reviews_container, .review, .updateForm{
+
+
+  max-height: 100%;
+  max-width: 100%;
+  align-items: center; 
+  justify-content: center;
+
+  /* width:100%; */
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: thin;
+  padding: 20px;
+  margin: 20px;
+  border-radius:25px;
+
+
+
+  padding: 20px;
+  margin: 10px;
+  border-radius:25px;
+
+
+}
+
+
+.review, .updateForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+
+.updateForm input[type=text] {
+  width: 500px;
+
+  padding:10px;
+  margin: 10px 10px 10px  10px;
+  /* margin: 10px; */
+  /* padding: 10px 10px;
+  margin: 5px 0 30px 60px; */
+
+}
+
+.updateForm select{
+
+  width: 424px;
+  padding: 10px 10px;
+  margin: 20px 0 5px 60px;
+}
+
+.hotels_img, .hotel_img{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center; 
+  flex-wrap: wrap;
+  
+
+  /* object-fit:scale-down; */
+
+}
+.hotels_img img{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-evenly;
+  margin: 5px;
+  height:100px;
+  width: 100px;
+
+  object-fit:scale-down;
+
+}
+
+.hotel_img img{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-evenly;
+  margin: 5px;
+  height:400px;
+  width: 400px;
+
+  object-fit:scale-down;
+
+}
+
+a:link {
+  text-decoration: none;
+  
+}
+
+a:visited {
+  color:blue;
+}
+
+
+

@@ -11,7 +11,6 @@ const Profile = (props) => {
   const [reviews, setReviews] = useState(null);
   const navigate = useNavigate();
 
- 
   useEffect(() => {
     if (props.userIdLoggedIn) {
       setUser(props.currentUser);
@@ -49,7 +48,13 @@ const Profile = (props) => {
   const loaded = () => {
     return (
       <div className="profile-page">
-        <Header />
+        <Header
+          currentUser={props.currentUser}
+          userLoggedIn={props.userLoggedIn}
+          setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}
+        />
+        <div className="profile-info">
         {user && (
           <>
             {user.userImage && (
@@ -59,21 +64,26 @@ const Profile = (props) => {
                 alt="Profile"
               />
             )}
-            <h3>{user.userName}</h3>
+            <div className="profile-info-no-image">
+            
             <div className="description-profile-page">
               <h2>
                 Welcome, {user.firstName} {user.lastName}!
               </h2>
               <br />
-              <h3>About you:</h3>
+              <h3 className="userName-profile">Username: </h3>
+              <p>{user.userName}</p>
+              <h3 className="about-profile">About you:</h3>
               <p>{user.description}</p>
               <br />
+              </div>
             </div>
           </>
         )}
+        </div>
         <div className="reviews_container">
-          <button>
-            <Link to="/newReview">Leave a Review</Link>
+          <button className="new-review-button">
+            <Link to="/newReview" className="new-review-link">Leave a Review</Link>
           </button>
           <Reviews
             hotel_Id={null}

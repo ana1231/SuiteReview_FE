@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import hotelData from "../data";
+import Header from "../components/headerSection/Header";
 
 const NewReviewForm = (props) => {
   const navigate = useNavigate();
@@ -64,6 +65,13 @@ const NewReviewForm = (props) => {
 
   return (
     <div className="newForm">
+      <Header
+          currentUser={props.currentUser}
+          userLoggedIn={props.userLoggedIn}
+          setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}
+        />
+      <div className="new-form">
       <form onSubmit={handleSubmit}>
         <label>
           Hotel:
@@ -97,8 +105,9 @@ const NewReviewForm = (props) => {
           />
         </label>
         <br></br>
-        <input type="Submit" value="Submit Review" />
+        <input className="submit-button" type="Submit" value="Submit Review" />
       </form>
+    </div>
     </div>
   );
 };

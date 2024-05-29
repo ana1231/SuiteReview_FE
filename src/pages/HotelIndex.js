@@ -47,9 +47,9 @@ const HotelIndex = (props) => {
           {hotels.map((hotels) => (
             <div className="hotels" key={hotels.name}>
               <Link to={`/hotels/${hotels._id}`}>
-                <h3>{hotels.name}</h3>
+                <h3 className="hotel-name">{hotels.name}</h3>
               </Link>
-              <h4>
+              <h4 className="hotel-location">
                 {hotels.city}, {hotels.state}
               </h4>
               <div className="hotels_img">

@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 const UpdateButton = (props) => {
   return (
-    <Link to={`/reviews/${props.review._id}`}>
-      <button>Update</button>
+    <Link to={`/reviews/${props.review._id}`} >
+      <button className="update-button">Update</button>
     </Link>
   );
 };

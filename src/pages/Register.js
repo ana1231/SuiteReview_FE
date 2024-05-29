@@ -3,11 +3,15 @@ import Login from "../components/registerSection/Login";
 import CreateAccount from "../components/registerSection/CreateAccount";
 import Header from "../components/headerSection/Header";
 
-
 const Register = (props) => {
   return (
     <>
-      <Header />
+      <Header
+        URL={props.URL}
+        userIdLoggedIn={props.userIdLoggedIn}
+        setUserId={props.setUserId}
+        setCurrentUser={props.setCurrentUser}
+      />
       <div className="register-section">
         <div className="overlay"></div>
         <div className="form-container">

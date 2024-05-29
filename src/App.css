@@ -48,6 +48,10 @@
   color: #0056b3;
 }
 
+.log-out-button:hover{
+  cursor: pointer;
+}
+
 .home-image {
   width: 100%;
   height: 550px;
@@ -427,13 +431,16 @@ a:link {
 .update-form form input[type="text"],
 .new-form form input[type="text"],
 .update-form form select,
-.new-form form select {
+.new-form form select 
+{ 
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  color:#333
 }
+
 
 .update-form .submit-button,
 .new-form .submit-button {
@@ -453,12 +460,29 @@ a:link {
   background-color: #333;
 }
 
+.update-form form select,
+.new-form form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: black; /* Override text color for select element */
+}
+
+
+.select-elements-form{
+  color: black;
+}
 /* Profile page user info */
+
+.profile-everything{
+  border: 5px solid rgb(45, 89, 89);
+}
 
 .profile-info{
   display: flex;
  justify-content: space-around;
- border: 5px solid rgb(45, 89, 89);
  width: 100%;
  align-items: center;
 }

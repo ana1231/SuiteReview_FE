@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Profile = (props) => {
+  console.log(props)
   // create state to hold reviews
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState(null);
@@ -49,49 +50,53 @@ const Profile = (props) => {
     return (
       <div className="profile-page">
         <Header
+          URL={props.URL}
           currentUser={props.currentUser}
           userLoggedIn={props.userLoggedIn}
           setUserId={props.setUserId}
           setCurrentUser={props.setCurrentUser}
         />
-        <div className="profile-info">
-        {user && (
-          <>
-            {user.userImage && (
-              <img
-                className="profile-image"
-                src={user.userImage}
-                alt="Profile"
-              />
+        <div className="profile-everything">
+          <div className="profile-info">
+            {user && (
+              <>
+                {user.userImage && (
+                  <img
+                    className="profile-image"
+                    src={user.userImage}
+                    alt="Profile"
+                  />
+                )}
+                <div className="profile-info-no-image">
+                  <div className="description-profile-page">
+                    <h2>
+                      Welcome, {user.firstName} {user.lastName}!
+                    </h2>
+                    <br />
+                    <h3 className="userName-profile">Username: </h3>
+                    <p>{user.userName}</p>
+                    <h3 className="about-profile">About you:</h3>
+                    <p>{user.description}</p>
+                    <br />
+                  </div>
+                </div>
+              </>
             )}
-            <div className="profile-info-no-image">
-            
-            <div className="description-profile-page">
-              <h2>
-                Welcome, {user.firstName} {user.lastName}!
-              </h2>
-              <br />
-              <h3 className="userName-profile">Username: </h3>
-              <p>{user.userName}</p>
-              <h3 className="about-profile">About you:</h3>
-              <p>{user.description}</p>
-              <br />
-              </div>
-            </div>
-          </>
-        )}
-        </div>
-        <div className="reviews_container">
-          <button className="new-review-button">
-            <Link to="/newReview" className="new-review-link">Leave a Review</Link>
-          </button>
-          <Reviews
-            hotel_Id={null}
-            userIdLoggedIn={props.userIdLoggedIn}
-            URL={props.URL}
-            loggedIn={props.userIdLoggedIn ? true : false}
-            profileComponent={true}
-          />
+          </div>
+          <div className="reviews_container">
+            <button className="new-review-button">
+              <Link to="/newReview" className="new-review-link">
+                Leave a Review
+              </Link>
+            </button>
+            <Reviews
+              hotel_Id={null}
+              userIdLoggedIn={props.userIdLoggedIn}
+              URL={props.URL}
+              loggedIn={props.userIdLoggedIn ? true : false}
+              profileComponent={true}
+            />
+          </div>
         </div>
       </div>
     );

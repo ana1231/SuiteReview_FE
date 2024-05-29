@@ -125,6 +125,7 @@ const UpdateReview = (props) => {
         <form onSubmit={handleSubmit}>
           <label>
             Hotel:
+            <div className="select-elements-form">
             <Select
               onChange={handleDropDown}
               options={hotelData}
@@ -133,6 +134,7 @@ const UpdateReview = (props) => {
                 return hotel.value === review.hotel_Id;
               })}
             />
+            </div>
           </label>
 
           <label>

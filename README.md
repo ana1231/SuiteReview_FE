@@ -2,14 +2,14 @@
 
 ## Explanation of Project
 
-The SuiteReview application allows the user to create a travel review journal. The user will be able to create a profile to submit reviews for hotels and be able to view reviews left by others.
-
+The SuiteReview application allows the user to share their own experience with hotels they have visited and know more from other reviewers. 
+App link - https://main--suitereviewv2.netlify.app/
 
 This project used the MVC file structure: Models, Views, Controllers.
 
 The full-stack for this application is MERN Stack Node.js, Mongoose, Express and React.
 
-One model has full CRUD and the application includes sign up/log in functionality. 
+Review model has full CRUD and the application includes sign up/log in functionality. 
 
 ## User Story and Wireframes
 
@@ -24,9 +24,6 @@ As a user, I should be able to view other reviews from different users.
 As a user, I should be able to view the reviews that I have submitted.
 
 
-### Wireframes:
-
-(need to add)
 
 ## Technologies Used
 

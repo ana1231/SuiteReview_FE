@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import hotelData from "../data";
+import Header from "../components/headerSection/Header";
 
 const NewReviewForm = (props) => {
   const navigate = useNavigate();
@@ -66,14 +67,23 @@ const NewReviewForm = (props) => {
 
   return (
     <div className="newForm">
+      <Header
+          currentUser={props.currentUser}
+          userLoggedIn={props.userLoggedIn}
+          setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}
+        />
+      <div className="new-form">
       <form onSubmit={handleSubmit}>
         <label>
           Hotel:
+          <div className="select-elements-form">
           <Select
             onChange={handleDropDown}
             options={hotelData}
             name="hotel_Id"
           />
+          </div>
         </label>
 
         <label>
@@ -99,38 +109,13 @@ const NewReviewForm = (props) => {
           />
         </label>
         <br></br>
-        <input type="Submit" value="Submit Review" />
+        <input className="submit-button" type="Submit" value="Submit Review" />
       </form>
+    </div>
     </div>
   );
 };
 
 export default NewReviewForm;
 
-//Explanation
 
-// State Management:
-// newForm state is used to hold the form data for the new review.
-
-// Handlers:
-// handleChange updates the newForm state when the input fields change.
-// handleDropDown updates the hotel_Id in the newForm state when a hotel is selected from the dropdown.
-// fixFormTypes ensures that rating and hotel_Id are converted to numbers before sending the data to the backend.
-
-// handleSubmit Function:
-// Prevents the default form submission behavior.
-// Calls fixFormTypes to ensure data types are correct.
-// Calls createReview to send the new review data to the backend.
-// Navigates to the /hotels page after successful submission.
-
-// Create Review Function:
-// Sends a POST request to the backend with the review data.
-// The backend URL is constructed using props.URL and the endpoint for creating reviews.
-
-// Form Rendering:
-// The form includes input fields for hotel selection, rating, and description.
-// The form submission button is labeled "Submit Review".
-
-//IMPORTANT
-
-//This page is currently placed in Main as

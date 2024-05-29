@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import hotelData from "../data";
+import Header from "../components/headerSection/Header";
 
 const UpdateReview = (props) => {
   // used for react-select
@@ -113,9 +114,18 @@ const UpdateReview = (props) => {
   const loaded = () => {
     return (
       <div className="updateForm">
+        <Header
+          currentUser={props.currentUser}
+          userLoggedIn={props.userLoggedIn}
+          setUserId={props.setUserId}
+          setCurrentUser={props.setCurrentUser}
+        />
+      
+      <div className="update-form">
         <form onSubmit={handleSubmit}>
           <label>
             Hotel:
+            <div className="select-elements-form">
             <Select
               onChange={handleDropDown}
               options={hotelData}
@@ -124,6 +134,7 @@ const UpdateReview = (props) => {
                 return hotel.value === review.hotel_Id;
               })}
             />
+            </div>
           </label>
 
           <label>
@@ -152,8 +163,9 @@ const UpdateReview = (props) => {
           </label>
           <br></br>
 
-          <input type="Submit" value="Update Review" />
+          <input className="submit-button" type="Submit" value="Update Review" />
         </form>
+      </div>
       </div>
     );
   };

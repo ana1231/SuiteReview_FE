@@ -12,13 +12,22 @@ import UpdateReview from "../pages/UpdateReview";
 import Profile from "../pages/ProfileTest";
 import NewReviewForm from "../pages/NewReview";
 
-
 const Main = (props) => {
   return (
     <main>
       {/* <HeaderNav /> */}
       <Routes>
-        <Route path="/" element={<Header />} />
+        <Route
+          path="/"
+          element={
+            <Header
+              URL={props.URL}
+              userIdLoggedIn={props.userIdLoggedIn}
+              setUserId={props.setUserId}
+              setCurrentUser={props.setCurrentUser}
+            />
+          }
+        />
 
         <Route
           path="/register"
@@ -81,6 +90,7 @@ const Main = (props) => {
                   URL={props.URL}
                   userIdLoggedIn={props.userIdLoggedIn}
                   currentUser={props.currentUser}
+                  setCurrentUser={props.setCurrentUser}
                 />
               }
             />

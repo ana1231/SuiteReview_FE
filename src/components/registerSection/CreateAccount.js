@@ -55,48 +55,49 @@ const CreateAccount = (props) => {
       <h2>Create Account</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
           <input
             type="text"
+            placeholder="Username"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div>
-          <label>Password:</label>
           <input
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div>
-          <label>First Name:</label>
           <input
             type="text"
+            placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div>
-          <label>Last Name:</label>
+          
           <input
             type="text"
+            placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div>
-          <label>Description:</label>
           <textarea
             value={description}
+            placeholder="About you :)"
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div>
-          <label>Profile Image:</label>
           <textarea
             value={userImage}
+            placeholder="Your Profile image link"
             onChange={(e) => setUserImage(e.target.value)}
           />
         </div>

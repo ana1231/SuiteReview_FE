@@ -71,22 +71,24 @@ const HotelShow = (props) => {
         />
         <div className="hotel">
           <div className="hotel_container">
-            <h2>{hotels.name}</h2>
+            <h2 className="hotel-name-show">{hotels.name}</h2>
 
             <div className="hotel_img">
               <img src={hotels["images"][0]} alt={hotels.name} />
               <img src={hotels["images"][1]} alt={hotels.name} />
               <img src={hotels["images"][2]} alt={hotels.name} />
             </div>
-
-            <h4>Rating: {hotels.ave_rating}</h4>
-
+            <div className="hotel-description">
+            <h4 className="hotel-rating">Rating: {hotels.ave_rating}</h4>
+            <div className="address">
             <h4>{hotels.address}</h4>
-            <h4>
+            <h4 className="hotel-location">
               {hotels.city}, {hotels.state}
             </h4>
+            </div>
 
-            <p>{hotels.description}</p>
+            <p className="about-hotel">{hotels.description}</p>
+            </div>
           </div>
 
           <div className="reviews_container">

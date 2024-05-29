@@ -256,6 +256,13 @@ graph LR;
 
 #### Read
 ***
+Reviews on Hotel Show page:
+(submission by other users)
+![ReactDiagram](public/images/ShowReview.png)
+***
+Reviews on Profile page:
+![ReactDiagram](public/images/ProfileReview.png)
+***
 There are a few GET routes. This section will focus on the Review.js component under the hotel show page.
 
 |HTTP Verb  |URL   | Action      | Explaination          |
@@ -316,6 +323,8 @@ graph LR;
 
 
 #### Update
+***
+![ReactDiagram](public/images/UpdateForm.png)
 ***
 Although it appears twice on the tree diagram, this section will use the hotel show page branch because the functionality is the same on both branches.
 
@@ -436,6 +445,9 @@ graph LR;
 <br>
 
 ## Authentification
+
+![ReactDiagram](public/images/Login.png)
+***
 
 #### Front End
 ***
